@@ -9,9 +9,7 @@ namespace F2F.Testing.Sandbox
 	public class FileSandbox : IFileSandbox
 	{
 		private bool _disposed = false;
-
 		private readonly IFileLocator _fileLocator;
-
 		private readonly string _sandboxPath;
 
 		public FileSandbox(IFileLocator fileLocator)

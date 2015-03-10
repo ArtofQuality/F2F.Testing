@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("xUnit feature for file sandbox")]
+[assembly: AssemblyTitle("F2F.Testing.Xunit.Sandbox")]
 [assembly: AssemblyDescription("Add FileSandboxFeature to your TestFixture (F2F.Testing.Xunit)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]

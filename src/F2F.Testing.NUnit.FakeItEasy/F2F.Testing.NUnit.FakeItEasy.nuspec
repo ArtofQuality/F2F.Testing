@@ -11,8 +11,9 @@
     <iconUrl>http://www.art-of-quality.de/aoq_32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
+    <summary>NUnit feature for AutoFixture with FakeItEasy</summary>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2015 Art of Quality GmbH</copyright>
-    <tags>aoq f2f testing</tags>
+    <tags>aoq f2f testing nunit fakeiteasy</tags>
   </metadata>
 </package>

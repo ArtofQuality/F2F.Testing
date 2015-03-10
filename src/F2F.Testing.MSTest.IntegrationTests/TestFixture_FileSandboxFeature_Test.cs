@@ -35,5 +35,5 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			// Act
 			s.Sandbox.ProvideFile("testdata/TextFile1.txt").Should().NotBeNull();
 		}
-    }
+	}
 }

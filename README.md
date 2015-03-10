@@ -10,23 +10,51 @@ TODO: Describe development process: send pull requests to dev, master gets publi
 
 A TestFixture is a base class for registering several test features. All SetUp and TearDown methods of registered test features will be correctly called for every test. At the moment we support xUnit, NUnit and MSTest frameworks.
 
+### FileSandboxFeature ###
+
+The FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share.
+
+Your benefits are:
+* Parallel test execution
+* Automatic cleanup of your file system
+
+Provided FileLocator's:
+
+* EmptyFileLocator
+* ResourceFileLocator
+* FolderBasedFileLocator
+* TargetFolderBasedFileLocator
+
 ```csharp
-public class TestFixture_Test : TestFixture
+public class FileSandboxFeature_Test : TestFixture
 {
-  public TestFixture_Test()
+  public FileSandboxFeature_Test()
   {
     Register(new FileSandboxFeature(new ResourceFileLocator(GetType())));
-    Register(new AutoMockFeature());
   }
 
   [Fact]
-  public void When_Providing_File__Should_Contain_Expected_Content()
+  public void When_Providing_File__Then_File_Should_Exist()
   {
     var sut = Use<FileSandboxFeature>();
     
     var absoluteFile = sut.Sandbox.ProvideFile("testdata/Readme.txt");
 	  
-    File.Exists(absoluteFile).Should().BeTrue();
+    File.Exists(file).Should().BeTrue();
+  }
+}
+```
+
+### AutoMockFeature ###
+
+Automatically initialize [AutoFixture](https://github.com/AutoFixture/AutoFixture) with a mocking framework as [FakeItEasy](https://github.com/FakeItEasy/FakeItEasy).
+
+```csharp
+public class AutoMockFeature_Test : TestFixture
+{
+  public AutoMockFeature_Test()
+  {
+    Register(new AutoMockFeature());
   }
 
   [Fact]
@@ -41,22 +69,29 @@ public class TestFixture_Test : TestFixture
 }
 ```
 
-## Test Features ##
+### LocalDbContextFeature ###
 
-### FileSandboxFeature ###
+Initialize EntityFramework using localdb data source, configured with a temporary file (using FileSandbox). With this parallel test execution with any given DbContext is possible.
 
-The FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share.
+```csharp
+public class LocalDbContextFeature_Test : TestFixture
+{
+  public LocalDbContextFeature_Test()
+  {
+    Register(new LocalDbContextFeature();
+  }
 
-Provided FileLocator's:
+  [Fact]
+  public void When_Creating_Context__Should_Not_Be_Null()
+  {
+    var sut = Use<LocalDbContextFeature>();
 
-* EmptyFileLocator
-* ResourceFileLocator
-* FolderBasedFileLocator
-* TargetFolderBasedFileLocator
+    var ctx = sut.CreateContext<CustomerContext>();
 
-### AutoMockFeature ###
-
-Automatically initialize [AutoFixture](https://github.com/AutoFixture/AutoFixture) with a mocking framework as [FakeItEasy](https://github.com/FakeItEasy/FakeItEasy).
+    ctx.Should().NotBeNull();
+  }
+}
+```
 
 ### AppConfigFeature ###
 
@@ -65,7 +100,3 @@ TODO
 ### SqlServerFeature ###
 
 TODO 
-
-### LocalDbContextFeature ###
-
-TODO

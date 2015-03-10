@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using F2F.Testing.Sandbox;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace F2F.Testing.MSTest.IntegrationTests
 {
@@ -20,20 +21,23 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		public void When_Requesting_Sandbox_Fixture__Should_Not_Be_Null()
 		{
 			// Act
-			var f = Use<FileSandboxFeature>();
+			var sut = Use<FileSandboxFeature>();
 
 			// Assert
-			Assert.IsNotNull(f.Sandbox);
+			sut.Sandbox.Should().NotBeNull();
 		}
 
 		[TestMethod]
-		public void When_Requesting_File__Then_Provide_Should_Succeed()
+		public void When_Providing_File__Then_File_Should_Exist()
 		{
 			// Arrange
-			var s = Use<FileSandboxFeature>();
+			var sut = Use<FileSandboxFeature>();
 
 			// Act
-			s.Sandbox.ProvideFile("testdata/TextFile1.txt").Should().NotBeNull();
+			var file = sut.Sandbox.ProvideFile("testdata/TextFile1.txt");
+
+			// Assert
+			File.Exists(file).Should().BeTrue();
 		}
 	}
 }

@@ -32,6 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="F2F.Testing.Sandbox">
+      <HintPath>..\packages\F2F.Testing.Sandbox.1.0.6\lib\net20\F2F.Testing.Sandbox.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
@@ -48,6 +57,7 @@
       <HintPath>..\packages\AutoFixture.AutoMoq.3.24.1\lib\net40\Ploeh.AutoFixture.AutoMoq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,10 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileSandboxFeature_ResourceFileLocator_Test.cs" />
     <Compile Include="TestFixture_FileSandboxFeature_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFixture_AutoMockFeature_Test.cs" />
+    <Compile Include="TestFixture_LocalDbContextFeature_Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\F2F.Testing.MSTest.EF\F2F.Testing.MSTest.EF.csproj">
+      <Project>{e45472ad-a608-4adf-b347-9db0a3923e56}</Project>
+      <Name>F2F.Testing.MSTest.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\F2F.Testing.MSTest.Moq\F2F.Testing.MSTest.Moq.csproj">
       <Project>{043ee6dc-3269-40a5-ad29-0e384f22e5c5}</Project>
       <Name>F2F.Testing.MSTest.Moq</Name>
@@ -71,10 +88,6 @@
     <ProjectReference Include="..\F2F.Testing.MSTest\F2F.Testing.MSTest.csproj">
       <Project>{0e23a599-d46a-4f8c-aac9-8e7a897dbb60}</Project>
       <Name>F2F.Testing.MSTest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\F2F.Testing.Sandbox\F2F.Testing.Sandbox.csproj">
-      <Project>{f9ee817e-ca65-4006-a898-4cc2e0aea961}</Project>
-      <Name>F2F.Testing.Sandbox</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="F2F.Testing.Sandbox">
+      <HintPath>..\packages\F2F.Testing.Sandbox.1.0.6\lib\net20\F2F.Testing.Sandbox.dll</HintPath>
+    </Reference>
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
@@ -51,6 +60,7 @@
       <HintPath>..\packages\AutoFixture.AutoFakeItEasy.3.24.1\lib\net40\Ploeh.AutoFixture.AutoFakeItEasy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -61,10 +71,15 @@
   <ItemGroup>
     <Compile Include="FileSandboxFeature_ResourceFileLocator_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFixture_AutoMockFeature_Test.cs" />
     <Compile Include="TestFixture_FileSandboxFeature_Test.cs" />
-    <Compile Include="TestFixture_Test.cs" />
+    <Compile Include="TestFixture_LocalDbContextFeature_Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\F2F.Testing.NUnit.EF\F2F.Testing.NUnit.EF.csproj">
+      <Project>{28ec9cc1-5534-4e5e-8af8-a4631bbc8e71}</Project>
+      <Name>F2F.Testing.NUnit.EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\F2F.Testing.NUnit.FakeItEasy\F2F.Testing.NUnit.FakeItEasy.csproj">
       <Project>{0ec3c635-fc5f-4939-b5fd-ca570f761dce}</Project>
       <Name>F2F.Testing.NUnit.FakeItEasy</Name>
@@ -77,14 +92,9 @@
       <Project>{506a9d3a-d043-40c0-b531-8dc3fd02ee7b}</Project>
       <Name>F2F.Testing.NUnit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\F2F.Testing.Sandbox\F2F.Testing.Sandbox.csproj">
-      <Project>{f9ee817e-ca65-4006-a898-4cc2e0aea961}</Project>
-      <Name>F2F.Testing.Sandbox</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="testdata\TextFile1.txt" />
-    <EmbeddedResource Include="testdata\dump.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

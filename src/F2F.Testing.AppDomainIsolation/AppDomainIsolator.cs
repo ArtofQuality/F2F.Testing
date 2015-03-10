@@ -4,7 +4,7 @@ using System.Runtime.Remoting;
 
 namespace F2F.Testing.AppDomainIsolation
 {
-	/// <summary>Isolates a test fixture by loading it in its own app domain</summary>
+	/// <summary>Isolates a test fixture by loading it in its own app domain.</summary>
 	public class AppDomainIsolator<T>
 		where T : MarshalByRefObject
 	{

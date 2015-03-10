@@ -32,9 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="F2F.Testing.Sandbox, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="F2F.Testing.Sandbox, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\F2F.Testing.Sandbox.1.0.5\lib\net20\F2F.Testing.Sandbox.dll</HintPath>
+      <HintPath>..\packages\F2F.Testing.Sandbox.1.0.6\lib\net20\F2F.Testing.Sandbox.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>

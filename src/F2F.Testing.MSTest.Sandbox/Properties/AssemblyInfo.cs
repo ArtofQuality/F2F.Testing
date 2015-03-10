@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("F2F.Testing.MSTest.Sandbox")]
-[assembly: AssemblyDescription("A file sandbox provides a temporary directory which gets deleted after dispose. Useful for parallel integration tests.")]
+[assembly: AssemblyTitle("MSTest feature for file sandbox")]
+[assembly: AssemblyDescription("Add FileSandboxFeature to your TestFixture (F2F.Testing.MSTest)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]
 [assembly: AssemblyProduct("F2F.Testing.MSTest.Sandbox")]

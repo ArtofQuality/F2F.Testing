@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("F2F.Testing.MSTest.Moq")]
+[assembly: AssemblyTitle("MSTest feature for AutoFixture with Moq")]
 [assembly: AssemblyDescription("Brings an AutoMockFeature which initializes AutoFixture with Moq.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]

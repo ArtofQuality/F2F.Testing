@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("F2F.Testing.MSTest")]
-[assembly: AssemblyDescription("Use TestFixture as base class for your tests, where TestInitialize and TestCleanup is automatically called for your registered features.")]
+[assembly: AssemblyTitle("Basic test features for MSTest")]
+[assembly: AssemblyDescription("The base class TestFixture provides a registry for test features which are automatically disposed after each test case.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]
 [assembly: AssemblyProduct("F2F.Testing.MSTest")]

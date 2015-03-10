@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("F2F.Testing.Xunit.FakeItEasy")]
+[assembly: AssemblyTitle("xUnit feature for AutoFixture with FakeItEasy")]
 [assembly: AssemblyDescription("Brings an AutoMockFeature which initializes AutoFixture with FakeItEasy.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]

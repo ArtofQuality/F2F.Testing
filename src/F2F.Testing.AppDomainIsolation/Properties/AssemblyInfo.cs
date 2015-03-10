@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("F2F.Testing.AppDomainIsolation")]
-[assembly: AssemblyDescription("F2F.Testing.AppDomainIsolation")]
+[assembly: AssemblyTitle("AppDomain isolation for test fixtures")]
+[assembly: AssemblyDescription("Isolates a test fixture by loading it in its own app domain.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]
 [assembly: AssemblyProduct("F2F.Testing.AppDomainIsolation")]

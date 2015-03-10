@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Basic test features for xUnit")]
+[assembly: AssemblyTitle("F2F.Testing.Xunit")]
 [assembly: AssemblyDescription("The base class TestFixture provides a registry for test features which are automatically disposed after each test case.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Art of Quality GmbH")]

@@ -7,10 +7,17 @@ using System.Text;
 #if NUNIT
 using NUnit.Framework;
 namespace F2F.Testing.NUnit
-#else
+#endif
 
+#if XUNIT
 namespace F2F.Testing.Xunit
 #endif
+
+#if MSTEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+namespace F2F.Testing.MSTest
+#endif
+
 {
 	/// <summary>
 	/// Provides a temporary database in SQL Server for a test fixture.
@@ -42,7 +49,7 @@ namespace F2F.Testing.Xunit
 			_connectionString = connectionString;
 			_databaseName = databaseName;
 
-#if !NUNIT
+#if XUNIT
 			SetUpSQLServer();
 #endif
 		}
@@ -66,6 +73,24 @@ namespace F2F.Testing.Xunit
 		/// <summary>Tear down the SQL connection.</summary>
 		[TearDown]
 		public void NUnit_TearDownSQLServer()
+		{
+			Dispose();
+		}
+
+#endif
+
+#if MSTEST
+
+		/// <summary>Set up the SQL connection.</summary>
+		[TestInitialize]
+		public void MSTest_SetUpSQLServer()
+		{
+			SetUpSQLServer();
+		}
+
+		/// <summary>Tear down the SQL connection.</summary>
+		[TestCleanup]
+		public void MSTest_TearDownSQLServer()
 		{
 			Dispose();
 		}

@@ -4,14 +4,19 @@ using System.IO;
 using System.Text;
 
 #if NUNIT
-
 using NUnit.Framework;
-
 namespace F2F.Testing.NUnit
-#else
+#endif
 
+#if XUNIT
 namespace F2F.Testing.Xunit
 #endif
+
+#if MSTEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+namespace F2F.Testing.MSTest
+#endif
+
 {
 	/// <summary>
 	/// Replaces the app.config of current test assembly with a new file.
@@ -32,7 +37,7 @@ namespace F2F.Testing.Xunit
 			_appConfigFile = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
 			_appConfigBackupFile = String.Format("{0}.bak", _appConfigFile);
 
-#if !NUNIT
+#if XUNIT
 			SetUpAppConfig();
 #endif
 		}
@@ -49,6 +54,24 @@ namespace F2F.Testing.Xunit
 		/// <summary>Tear down the feature.</summary>
 		[TearDown]
 		public void NUnit_TearDownAppConfig()
+		{
+			Dispose();
+		}
+
+#endif
+
+#if MSTEST
+
+		/// <summary>Set up the feature.</summary>
+		[TestInitialize]
+		public void MSTest_SetUpAppConfig()
+		{
+			SetUpAppConfig();
+		}
+
+		/// <summary>Tear down the feature.</summary>
+		[TestCleanup]
+		public void MSTest_TearDownAppConfig()
 		{
 			Dispose();
 		}

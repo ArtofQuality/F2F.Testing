@@ -1,56 +1,68 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace F2F.Testing.Sandbox
 {
-	/// <summary>File sandbox. </summary>
+	/// <summary>Implementation of a file sandbox.</summary>
 	public class FileSandbox : IFileSandbox
 	{
 		private bool _disposed = false;
 		private readonly IFileLocator _fileLocator;
 		private readonly string _sandboxPath;
 
+		/// <summary>
+		/// Create a new file sandbox.
+		/// </summary>
+		/// <param name="fileLocator">The file locator which resolves files.</param>
 		public FileSandbox(IFileLocator fileLocator)
 		{
 			_fileLocator = fileLocator;
 
-			_sandboxPath = Path.Combine(GetSandboxBasePath(), Guid.NewGuid().ToString());
+			_sandboxPath = System.IO.Path.Combine(GetSandboxBasePath(), Guid.NewGuid().ToString());
 
 			System.IO.Directory.CreateDirectory(_sandboxPath);
 		}
 
+		/// <summary>
+		/// Destructor
+		/// </summary>
 		~FileSandbox()
 		{
 			Dispose(false);
 		}
 
+		/// <see cref="IFileSandbox.Directory"/>
 		public string Directory
 		{
 			get { return _sandboxPath; }
 		}
 
+		/// <see cref="IFileSandbox.FileLocator"/>
 		public IFileLocator FileLocator
 		{
 			get { return _fileLocator; }
 		}
 
+		/// <see cref="IFileSandbox.ResolvePath(string)"/>
 		public string ResolvePath(string fileName)
 		{
-			return Path.Combine(_sandboxPath, fileName);
+			return System.IO.Path.Combine(_sandboxPath, fileName);
 		}
 
+		/// <see cref="IFileSandbox.ExistsFile(string)"/>
 		public bool ExistsFile(string fileName)
 		{
 			return System.IO.File.Exists(ResolvePath(fileName));
 		}
 
+		/// <see cref="IFileSandbox.ExistsDirectory(string)"/>
 		public bool ExistsDirectory(string fileName)
 		{
 			return System.IO.Directory.Exists(ResolvePath(fileName));
 		}
 
+		/// <see cref="IFileSandbox.CreateFile(string)"/>
 		public string CreateFile(string fileName)
 		{
 			string sandboxFile = ResolvePath(fileName);
@@ -60,6 +72,7 @@ namespace F2F.Testing.Sandbox
 			return sandboxFile;
 		}
 
+		/// <see cref="IFileSandbox.CreateTempFile()"/>
 		public string CreateTempFile()
 		{
 			string sandboxFile = GetTempFile();
@@ -69,6 +82,7 @@ namespace F2F.Testing.Sandbox
 			return sandboxFile;
 		}
 
+		/// <see cref="IFileSandbox.CreateTempFile(string)"/>
 		public string CreateTempFile(string fileExtension)
 		{
 			string sandboxFile = GetTempFile(fileExtension);
@@ -78,6 +92,7 @@ namespace F2F.Testing.Sandbox
 			return sandboxFile;
 		}
 
+		/// <see cref="IFileSandbox.CreateDirectory(string)"/>
 		public string CreateDirectory(string directoryName)
 		{
 			string createdDirectory = ResolvePath(directoryName);
@@ -87,6 +102,7 @@ namespace F2F.Testing.Sandbox
 			return createdDirectory;
 		}
 
+		/// <see cref="IFileSandbox.CreateDirectories(string[])"/>
 		public IEnumerable<string> CreateDirectories(params string[] directories)
 		{
 			IList<string> createdDirectories = new List<string>();
@@ -97,36 +113,29 @@ namespace F2F.Testing.Sandbox
 			return createdDirectories;
 		}
 
+		/// <see cref="IFileSandbox.GetTempFile()"/>
 		public string GetTempFile()
 		{
-			return Path.Combine(_sandboxPath, Guid.NewGuid().ToString());
+			return System.IO.Path.Combine(_sandboxPath, Guid.NewGuid().ToString());
 		}
 
+		/// <see cref="IFileSandbox.GetTempFile(string)"/>
 		public string GetTempFile(string fileExtension)
 		{
-			return Path.ChangeExtension(GetTempFileName(), fileExtension);
+			return System.IO.Path.ChangeExtension(GetTempFile(), fileExtension);
 		}
 
-		public string GetTempFileName()
-		{
-			return GetTempFile();
-		}
-
-		public string GetTempFileName(string fileExtension)
-		{
-			return GetTempFile(fileExtension);
-		}
-
+		/// <see cref="IFileSandbox.ProvideFile(string)"/>
 		public string ProvideFile(string fileName)
 		{
 			if (!_fileLocator.Exists(fileName))
 			{
-				throw new FileNotFoundException(String.Format("file {0} not found in sandbox", fileName));
+				throw new System.IO.FileNotFoundException(String.Format("file {0} not found in sandbox", fileName));
 			}
 
 			string sandboxFile = ResolvePath(fileName);
 
-			CreateDirectoryIfNotExists(Path.GetDirectoryName(sandboxFile));
+			CreateDirectoryIfNotExists(System.IO.Path.GetDirectoryName(sandboxFile));
 
 			if (sandboxFile != fileName)
 			{
@@ -136,6 +145,7 @@ namespace F2F.Testing.Sandbox
 			return sandboxFile;
 		}
 
+		/// <see cref="IFileSandbox.ProvideFiles(string[])"/>
 		public IEnumerable<string> ProvideFiles(params string[] fileNames)
 		{
 			IList<string> resolvedFiles = new List<string>();
@@ -146,6 +156,7 @@ namespace F2F.Testing.Sandbox
 			return resolvedFiles;
 		}
 
+		/// <see cref="IFileSandbox.ProvideDirectory(string)"/>
 		public string ProvideDirectory(string directoryName)
 		{
 			var sandboxDirectory = ResolvePath(directoryName);
@@ -160,6 +171,7 @@ namespace F2F.Testing.Sandbox
 			return sandboxDirectory;
 		}
 
+		/// <see cref="IFileSandbox.ProvideDirectories(string[])"/>
 		public IEnumerable<string> ProvideDirectories(params string[] directoryNames)
 		{
 			IList<string> resolvedDirectories = new List<string>();
@@ -172,7 +184,7 @@ namespace F2F.Testing.Sandbox
 
 		private static string GetSandboxBasePath()
 		{
-			return Path.GetTempPath();
+			return System.IO.Path.GetTempPath();
 		}
 
 		private void CreateDirectoryIfNotExists(string sandboxDirectory)
@@ -185,20 +197,23 @@ namespace F2F.Testing.Sandbox
 
 		private void CreateFileInSandbox(string sandboxFile)
 		{
-			CreateDirectoryIfNotExists(Path.GetDirectoryName(sandboxFile));
+			CreateDirectoryIfNotExists(System.IO.Path.GetDirectoryName(sandboxFile));
 
 			using (System.IO.File.Create(sandboxFile))
 			{
 			}
 		}
 
+		/// <summary>
+		/// Finalize the file sandbox.
+		/// </summary>
 		public void Dispose()
 		{
 			Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
-		protected void Dispose(bool disposing)
+		private void Dispose(bool disposing)
 		{
 			if (!_disposed)
 			{
@@ -210,7 +225,7 @@ namespace F2F.Testing.Sandbox
 
 		private void ReleaseUnmanagedResources()
 		{
-			var di = new DirectoryInfo(_sandboxPath);
+			var di = new System.IO.DirectoryInfo(_sandboxPath);
 			if (di.Exists)
 			{
 				try

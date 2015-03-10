@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="F2F.Testing.Sandbox, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\F2F.Testing.Sandbox.1.0.5\lib\net20\F2F.Testing.Sandbox.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -44,12 +48,6 @@
       <Link>FileSandboxFeature.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\F2F.Testing.Sandbox\F2F.Testing.Sandbox.csproj">
-      <Project>{f9ee817e-ca65-4006-a898-4cc2e0aea961}</Project>
-      <Name>F2F.Testing.Sandbox</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="F2F.Testing.NUnit.Sandbox.nuspec" />

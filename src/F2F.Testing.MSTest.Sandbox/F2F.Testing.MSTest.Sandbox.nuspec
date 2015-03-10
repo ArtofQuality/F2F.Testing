@@ -8,14 +8,11 @@
     <owners>$author$</owners>
     <licenseUrl>https://github.com/ArtofQuality/F2F.Testing/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ArtofQuality/F2F.Testing</projectUrl>
-    <iconUrl>http://www.art-of-quality.de/aoq.ico</iconUrl>
+    <iconUrl>http://www.art-of-quality.de/aoq_32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2015 Art of Quality GmbH</copyright>
-    <tags>aoq f2f testing</tags>
-      <dependencies>
-          <dependency id="F2F.Testing.Sandbox" version="2.2.0" />
-      </dependencies>
+    <tags>aoq f2f testing file sandbox</tags>
   </metadata>
 </package>

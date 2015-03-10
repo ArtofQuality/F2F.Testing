@@ -4,7 +4,7 @@ using System.Text;
 
 namespace F2F.Testing.Sandbox
 {
-	/// <summary>Interface for a file locator.</summary>
+	/// <summary>Interface for a file locator. Required for resolving files in file sandbox.</summary>
 	public interface IFileLocator
 	{
 		/// <summary>Query if 'fileName' exists.</summary>

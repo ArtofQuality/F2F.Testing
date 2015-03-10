@@ -43,7 +43,7 @@ namespace F2F.Testing.Sandbox
 		/// <param name="fileExtension">The file extension.</param>
 		/// <returns>The path to the new file.</returns>
 		string CreateTempFile(string fileExtension);
-		
+
 		/// <summary>Creates a directory in the sandbox, if it does not exist yet.</summary>
 		/// <param name="directoryName">The directory to create.</param>
 		/// <returns>The path to the created directory in the sandbox.</returns>
@@ -100,6 +100,5 @@ namespace F2F.Testing.Sandbox
 		/// <param name="directoryNames">The directories to provide.</param>
 		/// <returns>The absolute paths to the provided directories</returns>
 		IEnumerable<string> ProvideDirectories(params string[] directoryNames);
-
 	}
 }

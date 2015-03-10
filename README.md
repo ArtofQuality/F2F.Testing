@@ -14,16 +14,18 @@ A TestFixture is a base class for registering several test features. All SetUp a
 
 The FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share.
 
-Your benefits are:
-* Parallel test execution
-* Automatic cleanup of your file system
-
 Provided FileLocator's:
 
 * EmptyFileLocator
 * ResourceFileLocator
 * FolderBasedFileLocator
 * TargetFolderBasedFileLocator
+
+Your benefits are:
+* Parallel test execution
+* Automatic cleanup of your file system
+* With ResourceFileLocator: No special deployment of test data files, everything needed is inside your test assembly!
+* With FolderBasedFileLocator: Large test data files can be used by everyone using a network share
 
 ```csharp
 public class FileSandboxFeature_Test : TestFixture

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("F2F.Testing.Xunit.Npgsql")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Test feature for temporary database in PostgreSQL server")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Art of Quality GmbH")]
 [assembly: AssemblyProduct("F2F.Testing.Xunit.Npgsql")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright 2015 Art of Quality GmbH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

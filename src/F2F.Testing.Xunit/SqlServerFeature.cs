@@ -10,6 +10,7 @@ namespace F2F.Testing.NUnit
 #endif
 
 #if XUNIT
+
 namespace F2F.Testing.Xunit
 #endif
 

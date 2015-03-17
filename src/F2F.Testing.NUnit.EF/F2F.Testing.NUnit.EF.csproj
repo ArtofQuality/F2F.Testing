@@ -22,6 +22,7 @@
     <DefineConstants>TRACE;DEBUG;NUNIT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\F2F.Testing.NUnit.EF.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE;NUNIT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\F2F.Testing.NUnit.EF.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -56,6 +58,9 @@
   <ItemGroup>
     <Compile Include="..\F2F.Testing.Xunit.EF\LocalDbContextFeature.cs">
       <Link>LocalDbContextFeature.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.EF\LocalDbFeature.cs">
+      <Link>LocalDbFeature.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

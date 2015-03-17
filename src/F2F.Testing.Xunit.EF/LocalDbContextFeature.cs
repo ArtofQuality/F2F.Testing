@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using F2F.Testing.Sandbox;
 
 #if NUNIT
 namespace F2F.Testing.NUnit.EF
@@ -18,10 +17,11 @@ namespace F2F.Testing.MSTest.EF
 #endif
 
 {
-	public class LocalDbContextFeature : IDisposable
+	/// <summary>
+	/// A factory for creating a EntityFramework context on a temporary local db.
+	/// </summary>
+	public class LocalDbContextFeature : LocalDbFeature
 	{
-		private readonly IFileSandbox _sandbox = new FileSandbox(new EmptyFileLocator());
-
 		private class DatabaseInitializer<TContext> : DropCreateDatabaseAlways<TContext>
 			where TContext : DbContext
 		{
@@ -31,27 +31,21 @@ namespace F2F.Testing.MSTest.EF
 			}
 		}
 
+		/// <summary>
+		/// Create an entity context on temporary file.
+		/// </summary>
+		/// <typeparam name="TContext">The type of the context.</typeparam>
+		/// <returns>The entity context.</returns>
 		public TContext CreateContext<TContext>()
 			where TContext : DbContext
 		{
-			var context = (TContext)Activator.CreateInstance(typeof(TContext), GetConnectionString());
+			var context = (TContext)Activator.CreateInstance(typeof(TContext), ConnectionString);
 
 			var initializer = new DatabaseInitializer<TContext>();
 			Database.SetInitializer(initializer);
 			context.Database.Initialize(true);
 
 			return context;
-		}
-
-		private string GetConnectionString()
-		{
-			var dbfile = _sandbox.GetTempFile("mdf");
-			return String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", dbfile);
-		}
-
-		public void Dispose()
-		{
-			_sandbox.Dispose();
 		}
 	}
 }

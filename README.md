@@ -6,7 +6,7 @@ Library containing functionality useful in tests. All libraries are provided via
 
 A TestFixture is a base class for registering several test features. All SetUp and TearDown methods of registered test features will be correctly called for every test. At the moment we support xUnit, NUnit and MSTest frameworks.
 
-TestFixture provides only two public methods: `Register` for registering new features (which can be at least every regular object) by type and `Use` for requesting a registered object by it's type.
+TestFixture provides only two public methods: `Register` for registering new features by type (where a feature can be of any type) and `Use` for requesting a registered object by it's type.
 
 *NuGet packages*:
 * F2F.Testing.Xunit
@@ -15,24 +15,30 @@ TestFixture provides only two public methods: `Register` for registering new fea
 
 **Why do I need this?**
 
-You know the situation when your test methods become too complex? Wouldn't it be nice to extend your tests with re-usable features which get automatically initialized and destroyed as your tests do? Yes, you can use SetUp and TearDown methods of your unit testing framework - but what if I have features which I need in several test classes? Using a base class isn't a solution either, because I'm only able to use one of it.
+You know the situation when your test methods become too complex? Wouldn't it be nice to extend your tests with re-usable features which get automatically initialized and destroyed as your tests do? Yes, you can use SetUp and TearDown methods of your unit testing framework - but what if I have features which I need in several test classes? Using a base class isn't a solution either, because we can only have one base class. We went through the pain of having class hierarchies that provided test functionality of different shape, but it just doesn't scale and needs a lot of maintenance.
 
-With TestFixture you are able to extend your class with unlimited re-usable features! That makes you tests clean and improves the readability.
+The main idea of the `TestFixture` class is to have only one base class that just acts as an access point for a set of test features used in a single test class.
+
+With TestFixture it is possible to extend a class with unlimited re-usable features! That makes our tests clean, improves the readability and menas less maintenance pain.
 
 ## FileSandbox ##
 
-You certainly know legacy code which is hard to test because it uses direct file system access. You can start to abstract every access to file system so you are able to execute unit tests. But there are situations where you want to test the *real* work with files on the hard disc. Then we don't talk about unit tests anymore, because you have external dependencies and of course your tests will execute slower. We talk about integration tests.
+Everyone of us certainly knows legacy code which is hard to test because it uses direct file system access. We can start to abstract every access to the file system so we are able to write unit tests. But there are situations where we want to test the *real* work with files on the hard disc. In this case we don't talk about unit tests anymore and our tests will of course take more time to execute. 
 
-What happens if you want to test code with real files? You might have problems with tests which change your test data, so you have to copy them before. Depending on your environment (think about continuous integration systems) there will be differences between relative and absolute paths. Executing tests in parallel can be a problem when working with same test data. Furthermore you have to think about cleaning up your environment after test execution, e.g. deleting temporary files etc.
+What happens if you want to test code with real files? You might have problems with tests which change your test data, so you have to copy them before. Depending on your environment (think about continuous integration systems) there will be differences between relative and absolute paths. Executing tests in parallel can also be a problem when working with the same test data. Furthermore you have to think about cleaning up your environment after test execution, e.g. deleting temporary files etc.
 
-A FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share. Then you get the absolute path to the file independent from your environment.
+A FileSandbox creates a temporary directory on your local environment for each test case. With a given `FileLocator` you can automatically resolve files from e.g. Assembly resources or a network share (to name a few). Then you get the absolute path to the file independent from your environment and the actual source of the file.
 
 For a unit testing framework this means you can execute tests even in parallel because every test will create it's own temporary directory. After test execution the temporary directory will be automatically deleted.
+
+**Warning** - there is still one caveat here:
+
+If you debug your tests and stop the debugger in the middle of the test, the cleanup code won't execute and you will have trash in your temp folder then. We already have some ideas on how to solve this as well, but it's not implemented yet.
 
 *NuGet package*:
 * F2F.Testing.Sandbox
 
-There are also extensions for unit testing frameworks, see [FileSandboxFeature](#FileSandboxFeature).
+The `FileSandbox`can be used standalone or you can use the [TestFixture](#TestFixture) for the [FileSandboxFeature](#FileSandboxFeature) for one of the currently supported unit testing frameworks.
 
 ### EmptyFileLocator ###
 

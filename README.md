@@ -10,9 +10,11 @@ TODO: Describe development process: send pull requests to dev, master gets publi
 
 A TestFixture is a base class for registering several test features. All SetUp and TearDown methods of registered test features will be correctly called for every test. At the moment we support xUnit, NUnit and MSTest frameworks.
 
-### FileSandboxFeature ###
+TestFixture provides only two public methods: `Register` for registering new features (which can be at least every regular object) by type and `Use` for requesting a registered object by it's type.
 
-The FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share.
+## FileSandbox ##
+
+A FileSandbox creates a temporary directory on your local environment for each test case. With given FileLocator's you can automatically resolve files from e.g. Assembly resources or a network share.
 
 Provided FileLocator's:
 
@@ -24,8 +26,20 @@ Provided FileLocator's:
 Your benefits are:
 * Parallel test execution
 * Automatic cleanup of your file system
-* With ResourceFileLocator: No special deployment of test data files, everything needed is inside your test assembly!
-* With FolderBasedFileLocator: Large test data files can be used by everyone using a network share
+
+### ResourceFileLocator ###
+
+With this FileLocator you need no special deployment of test data files because everything needed is inside your test assembly. Just add files to your test assembly as *Embedded Resource* using the file properties. That's very useful for e.g. small text files.
+
+### FolderBasedFileLocator ###
+
+This FileLocator is useful for large test data files which can be used by everyone using a network share. The FileSandbox will copy each required file to the local temporary directory.
+
+## Test Features ##
+
+### FileSandboxFeature ###
+
+Automatically initialize a FileSandbox.
 
 ```csharp
 public class FileSandboxFeature_Test : TestFixture

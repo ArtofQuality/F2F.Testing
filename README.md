@@ -2,10 +2,6 @@
 
 Library containing functionality useful in tests. All libraries are provided via [NuGet](http://www.nuget.org/packages?q=f2f).
 
-TODO: Getting started
-
-TODO: Describe development process: send pull requests to dev, master gets published after integration of PRs from dev
-
 ## TestFixture ##
 
 A TestFixture is a base class for registering several test features. All SetUp and TearDown methods of registered test features will be correctly called for every test. At the moment we support xUnit, NUnit and MSTest frameworks.

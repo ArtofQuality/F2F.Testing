@@ -33,7 +33,7 @@ For a unit testing framework this means you can execute tests even in parallel b
 
 **Warning** - there is still one caveat here:
 
-If you debug your tests and stop the debugger in the middle of the test, the cleanup code won't execute and you will have trash in your temp folder then. We already have some ideas on how to solve this as well, but it's not implemented yet.
+If you debug your tests and stop the debugger in the middle of the test or your SUT doesn't close file handles, the cleanup code won't execute and you will have trash in your temp folder then. We already have some ideas on how to solve this as well, but it's not implemented yet.
 
 *NuGet package*:
 * F2F.Testing.Sandbox
@@ -72,7 +72,7 @@ With `sandbox.Dispose()` the `FileSandbox` will delete the temporary directory a
 The `FolderBasedFileLocator` is useful for large test data files which can be used by everyone using a network share. The FileSandbox will copy each required file to the local temporary directory. Additionally there is a `TargetFolderBasedFileLocator` which automatically points to your execution directory.
 
 ```csharp
-var sandbox = new FileSandbox(new FolderBasedFileLocator("\\nas.local\\testdata"));
+var sandbox = new FileSandbox(new FolderBasedFileLocator(@"\\nas.local\testdata"));
 
 // Locates the given file using the FolderBasedFileLocator, provides the
 // file in the sandbox and returns the absolute path.

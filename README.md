@@ -25,7 +25,7 @@ With TestFixture it is possible to extend a class with unlimited re-usable featu
 
 ### FileSandboxFeature ###
 
-Provide a `FileSandbox` for your test.
+Provide a [FileSandbox](https://github.com/ArtofQuality/F2F.Sandbox) for your test.
 
 *NuGet packages*:
 * F2F.Testing.Xunit.Sandbox

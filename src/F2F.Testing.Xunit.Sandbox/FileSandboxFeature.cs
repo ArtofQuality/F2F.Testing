@@ -1,20 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using F2F.Testing.Sandbox;
+using F2F.Sandbox;
 
 #if NUNIT
+
 using NUnit.Framework;
-namespace F2F.Testing.NUnit
+
+namespace F2F.Testing.NUnit.Sandbox
 #endif
 
 #if XUNIT
-namespace F2F.Testing.Xunit
+namespace F2F.Testing.Xunit.Sandbox
 #endif
 
 #if MSTEST
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace F2F.Testing.MSTest
+namespace F2F.Testing.MSTest.Sandbox
 #endif
 
 {

@@ -4,13 +4,14 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
-using F2F.Testing.Sandbox;
+using F2F.Sandbox;
 
 #if NUNIT
 namespace F2F.Testing.NUnit.EF
 #endif
 
 #if XUNIT
+
 namespace F2F.Testing.Xunit.EF
 #endif
 
@@ -24,7 +25,7 @@ namespace F2F.Testing.MSTest.EF
 	/// </summary>
 	public class LocalDbFeature : IDisposable
 	{
-		private readonly IFileSandbox _sandbox = new FileSandbox(new EmptyFileLocator());
+		private readonly IFileSandbox _sandbox;
 		private readonly string _databaseFile;
 		private readonly string _connectionString;
 
@@ -32,7 +33,16 @@ namespace F2F.Testing.MSTest.EF
 		/// Initializes a file sandbox containing a temporary file.
 		/// </summary>
 		public LocalDbFeature()
+			: this(new FileSandbox(new EmptyFileLocator()))
 		{
+		}
+
+		/// <summary>
+		/// Initializes a file sandbox containing a temporary file.
+		/// </summary>
+		public LocalDbFeature(IFileSandbox sandbox)
+		{
+			_sandbox = sandbox;
 			_databaseFile = _sandbox.GetTempFile("mdf");
 			_connectionString = String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", _databaseFile);
 		}

@@ -65,12 +65,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\F2F.Testing.Sandbox\F2F.Testing.Sandbox.csproj">
-      <Project>{F9EE817E-CA65-4006-A898-4CC2E0AEA961}</Project>
-      <Name>F2F.Testing.Sandbox</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

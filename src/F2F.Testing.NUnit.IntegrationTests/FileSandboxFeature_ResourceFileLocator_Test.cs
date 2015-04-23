@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using F2F.Testing.Sandbox;
+using F2F.Sandbox;
+using F2F.Testing.NUnit.Sandbox;
 using FluentAssertions;
 using NUnit.Framework;
 

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using F2F.Sandbox;
 
 #if NUNIT
+
 namespace F2F.Testing.NUnit.EF
 #endif
 
 #if XUNIT
+
 namespace F2F.Testing.Xunit.EF
 #endif
 
@@ -29,6 +32,22 @@ namespace F2F.Testing.MSTest.EF
 			{
 				context.SaveChanges();
 			}
+		}
+
+		/// <summary>
+		/// Initializes a file sandbox containing a temporary file.
+		/// </summary>
+		public LocalDbContextFeature()
+			: base()
+		{
+		}
+
+		/// <summary>
+		/// Initializes a file sandbox containing a temporary file.
+		/// </summary>
+		public LocalDbContextFeature(IFileSandbox sandbox)
+			: base(sandbox)
+		{
 		}
 
 		/// <summary>

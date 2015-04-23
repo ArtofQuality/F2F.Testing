@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using F2F.Testing.Sandbox;
+using F2F.Sandbox;
 
 namespace F2F.Testing.Xunit.Sandbox
 {

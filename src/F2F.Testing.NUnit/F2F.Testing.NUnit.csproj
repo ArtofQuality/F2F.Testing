@@ -55,12 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\F2F.Testing.Sandbox\F2F.Testing.Sandbox.csproj">
-      <Project>{f9ee817e-ca65-4006-a898-4cc2e0aea961}</Project>
-      <Name>F2F.Testing.Sandbox</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="F2F.Testing.NUnit.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>

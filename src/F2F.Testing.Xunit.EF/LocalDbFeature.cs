@@ -7,15 +7,16 @@ using System.Text;
 using F2F.Sandbox;
 
 #if NUNIT
+using NUnit.Framework;
 namespace F2F.Testing.NUnit.EF
 #endif
 
 #if XUNIT
-
 namespace F2F.Testing.Xunit.EF
 #endif
 
 #if MSTEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace F2F.Testing.MSTest.EF
 #endif
 
@@ -25,26 +26,69 @@ namespace F2F.Testing.MSTest.EF
 	/// </summary>
 	public class LocalDbFeature : IDisposable
 	{
-		private readonly IFileSandbox _sandbox;
-		private readonly string _databaseFile;
-		private readonly string _connectionString;
+		private IFileSandbox _sandbox;
+		private string _databaseFile;
+		private string _connectionString;
 
 		/// <summary>
 		/// Initializes a file sandbox containing a temporary file.
 		/// </summary>
 		public LocalDbFeature()
-			: this(new FileSandbox(new EmptyFileLocator()))
 		{
+#if XUNIT
+			SetUpLocalDb();
+#endif
+		}
+
+#if NUNIT
+
+		/// <summary>Set up the database.</summary>
+		[SetUp]
+		public void NUnit_SetUpLocalDb()
+		{
+			SetUpLocalDb();
+		}
+
+		/// <summary>Tear down the database.</summary>
+		[TearDown]
+		public void NUnit_TearDownLocalDb()
+		{
+			Dispose();
+		}
+
+#endif
+
+#if MSTEST
+
+		/// <summary>Set up the database.</summary>
+		[TestInitialize]
+		public void MSTest_SetUpLocalDb()
+		{
+			SetUpLocalDb();
+		}
+
+		/// <summary>Tear down the database.</summary>
+		[TestCleanup]
+		public void MSTest_TearDownLocalDb()
+		{
+			Dispose();
+		}
+
+#endif
+
+		private void SetUpLocalDb()
+		{
+			_sandbox = new FileSandbox(new EmptyFileLocator());
+			_databaseFile = _sandbox.GetTempFile("mdf");
+			_connectionString = String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", _databaseFile);
 		}
 
 		/// <summary>
-		/// Initializes a file sandbox containing a temporary file.
+		/// The path to local db file.
 		/// </summary>
-		public LocalDbFeature(IFileSandbox sandbox)
+		public string DatabaseFile
 		{
-			_sandbox = sandbox;
-			_databaseFile = _sandbox.GetTempFile("mdf");
-			_connectionString = String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", _databaseFile);
+			get { return _databaseFile; }
 		}
 
 		/// <summary>
@@ -61,6 +105,9 @@ namespace F2F.Testing.MSTest.EF
 		/// <param name="sqlDumpFile">The SQL dump file.</param>
 		public void Import(string sqlDumpFile)
 		{
+			if (String.IsNullOrEmpty(sqlDumpFile))
+				throw new ArgumentException("sqlDumpFile is null or empty.", "sqlDumpFile");
+
 			using (var con = new SqlConnection(ConnectionString))
 			using (var file = new StreamReader(sqlDumpFile))
 			{
@@ -88,13 +135,17 @@ namespace F2F.Testing.MSTest.EF
 		}
 
 		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
-		/// resources.
+		/// Dispose file sandbox.
 		/// </summary>
-		/// <seealso cref="M:System.IDisposable.Dispose()"/>
-		public void Dispose()
+		public virtual void Dispose()
 		{
-			_sandbox.Dispose();
+			if (_sandbox != null)
+			{
+				_sandbox.Dispose();
+				_sandbox = null;
+				_databaseFile = null;
+				_connectionString = null;
+			}
 		}
 	}
 }

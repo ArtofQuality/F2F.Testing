@@ -4,9 +4,7 @@ using System.Text;
 using F2F.Sandbox;
 
 #if NUNIT
-
 using NUnit.Framework;
-
 namespace F2F.Testing.NUnit.Sandbox
 #endif
 
@@ -27,9 +25,6 @@ namespace F2F.Testing.MSTest.Sandbox
 	{
 		/// <summary>The file locator.</summary>
 		private readonly IFileLocator _fileLocator;
-
-		/// <summary>The disposed state.</summary>
-		private bool _disposed = false;
 
 		/// <summary>The sandbox.</summary>
 		private IFileSandbox _sandbox;
@@ -98,23 +93,19 @@ namespace F2F.Testing.MSTest.Sandbox
 
 #endif
 
+		/// <summary>Create the file sandbox.</summary>
 		private void SetUpSandbox()
 		{
 			_sandbox = new FileSandbox(_fileLocator);
 		}
 
-		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
-		/// resources.
-		/// </summary>
-		/// <seealso cref="M:System.IDisposable.Dispose()"/>
+		/// <summary>Dispose the file sandbox.</summary>
 		public void Dispose()
 		{
-			if (!_disposed)
+			if (_sandbox != null)
 			{
 				_sandbox.Dispose();
-
-				_disposed = true;
+				_sandbox = null;
 			}
 		}
 	}

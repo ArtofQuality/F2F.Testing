@@ -39,7 +39,7 @@ namespace F2F.Testing.MSTest.EF
 
 		/// <summary>Tear down the database.</summary>
 		[TearDown]
-		public void NUnit_TearDownLocalDb()
+		public void NUnit_TearDownLocalDbContext()
 		{
 			Dispose();
 		}
@@ -50,7 +50,7 @@ namespace F2F.Testing.MSTest.EF
 
 		/// <summary>Tear down the database.</summary>
 		[TestCleanup]
-		public void MSTest_TearDownLocalDb()
+		public void MSTest_TearDownLocalDbContext()
 		{
 			Dispose();
 		}

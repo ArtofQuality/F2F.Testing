@@ -67,6 +67,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -75,6 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_AppConfigFeature_Test.cs">
+      <Link>TestFixture_AppConfigFeature_Test.cs</Link>
+    </Compile>
     <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_AutoMockFeature_Test.cs">
       <Link>TestFixture_AutoMockFeature_Test.cs</Link>
     </Compile>
@@ -108,11 +112,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="testdata\TextFile1.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="..\F2F.Testing.Xunit.IntegrationTests\testdata\app1.config">
+      <Link>testdata\app1.config</Link>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\F2F.Testing.Xunit.IntegrationTests\testdata\TextFile1.txt">
+      <Link>testdata\TextFile1.txt</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

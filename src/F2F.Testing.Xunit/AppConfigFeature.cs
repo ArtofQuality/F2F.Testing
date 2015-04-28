@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text;
 
@@ -24,7 +25,6 @@ namespace F2F.Testing.MSTest
 	public class AppConfigFeature : IDisposable
 	{
 		private readonly string _appConfigFile;
-
 		private readonly string _appConfigBackupFile;
 
 		private bool _disposed = false;
@@ -38,7 +38,7 @@ namespace F2F.Testing.MSTest
 			_appConfigBackupFile = String.Format("{0}.bak", _appConfigFile);
 
 #if XUNIT
-			SetUpAppConfig();
+			BackupAppConfig();
 #endif
 		}
 
@@ -48,7 +48,7 @@ namespace F2F.Testing.MSTest
 		[SetUp]
 		public void NUnit_SetUpAppConfig()
 		{
-			SetUpAppConfig();
+			BackupAppConfig();
 		}
 
 		/// <summary>Tear down the feature.</summary>
@@ -66,7 +66,7 @@ namespace F2F.Testing.MSTest
 		[TestInitialize]
 		public void MSTest_SetUpAppConfig()
 		{
-			SetUpAppConfig();
+			BackupAppConfig();
 		}
 
 		/// <summary>Tear down the feature.</summary>
@@ -78,24 +78,11 @@ namespace F2F.Testing.MSTest
 
 #endif
 
-		private void SetUpAppConfig()
+		private void BackupAppConfig()
 		{
 			if (File.Exists(_appConfigFile))
 			{
 				File.Copy(_appConfigFile, _appConfigBackupFile, true);
-			}
-		}
-
-		private void TearDownAppConfig()
-		{
-			if (File.Exists(_appConfigFile))
-			{
-				File.Delete(_appConfigFile);
-			}
-
-			if (File.Exists(_appConfigBackupFile))
-			{
-				File.Move(_appConfigBackupFile, _appConfigFile);
 			}
 		}
 
@@ -106,18 +93,26 @@ namespace F2F.Testing.MSTest
 		public void Install(string appConfigFile)
 		{
 			File.Copy(appConfigFile, _appConfigFile, true);
+
+			ConfigurationManager.RefreshSection("appSettings");
 		}
 
 		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
-		/// resources.
+		/// Re-install the original app.config
 		/// </summary>
-		/// <seealso cref="M:System.IDisposable.Dispose()"/>
 		public void Dispose()
 		{
 			if (!_disposed)
 			{
-				TearDownAppConfig();
+				if (File.Exists(_appConfigFile))
+				{
+					File.Delete(_appConfigFile);
+				}
+
+				if (File.Exists(_appConfigBackupFile))
+				{
+					File.Move(_appConfigBackupFile, _appConfigFile);
+				}
 
 				_disposed = true;
 			}

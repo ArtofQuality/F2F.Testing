@@ -48,10 +48,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "F2F.Testing.MSTest.Npgsql", "F2F.Testing.MSTest.Npgsql\F2F.Testing.MSTest.Npgsql.csproj", "{9DBEDB10-E972-45CF-83D2-8D70AD95CB49}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

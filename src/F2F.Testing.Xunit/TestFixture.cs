@@ -20,7 +20,7 @@ namespace F2F.Testing.MSTest
 
 {
 	/// <summary>
-	/// A generic base class for a nunit test fixture.
+	/// A generic base class for a test fixture.
 	/// </summary>
 	public abstract class TestFixture : IDisposable
 	{
@@ -104,6 +104,13 @@ namespace F2F.Testing.MSTest
 			InvokeMethodWithAttribute<TearDownAttribute>(_namedFeatures.Values);
 		}
 
+		/// <summary>Dispose all known features.</summary>
+		[TestFixtureTearDown]
+		public void DisposeFeatures()
+		{
+			Dispose();
+		}
+
 #endif
 
 #if MSTEST
@@ -122,6 +129,8 @@ namespace F2F.Testing.MSTest
 		{
 			InvokeMethodWithAttribute<TestCleanupAttribute>(_features);
 			InvokeMethodWithAttribute<TestCleanupAttribute>(_namedFeatures.Values);
+
+			Dispose();
 		}
 
 #endif

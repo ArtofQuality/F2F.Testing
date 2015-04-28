@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NUNIT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -28,7 +28,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NUNIT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -39,8 +39,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="F2F.Sandbox">
-      <HintPath>..\packages\F2F.Sandbox.1.0.6\lib\net20\F2F.Sandbox.dll</HintPath>
+    <Reference Include="F2F.Sandbox, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\F2F.Sandbox.1.1.0.0\lib\net20\F2F.Sandbox.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="FakeItEasy">
       <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
@@ -66,6 +67,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -74,11 +76,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileSandboxFeature_ResourceFileLocator_Test.cs" />
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_AppConfigFeature_Test.cs">
+      <Link>TestFixture_AppConfigFeature_Test.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_AutoMockFeature_Test.cs">
+      <Link>TestFixture_AutoMockFeature_Test.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_FileSandboxFeature_Test.cs">
+      <Link>TestFixture_FileSandboxFeature_Test.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_LocalDbContextFeature_Test.cs">
+      <Link>TestFixture_LocalDbContextFeature_Test.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_LocalDbFeature_Test.cs">
+      <Link>TestFixture_LocalDbFeature_Test.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestFixture_AutoMockFeature_Test.cs" />
-    <Compile Include="TestFixture_FileSandboxFeature_Test.cs" />
-    <Compile Include="TestFixture_LocalDbContextFeature_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\F2F.Testing.NUnit.EF\F2F.Testing.NUnit.EF.csproj">
@@ -99,11 +112,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="testdata\TextFile1.txt" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="..\F2F.Testing.Xunit.IntegrationTests\testdata\app1.config">
+      <Link>testdata\app1.config</Link>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\F2F.Testing.Xunit.IntegrationTests\testdata\TextFile1.txt">
+      <Link>testdata\TextFile1.txt</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

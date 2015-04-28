@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using F2F.Sandbox;
 
 #if NUNIT
-
+using NUnit.Framework;
 namespace F2F.Testing.NUnit.EF
 #endif
 
 #if XUNIT
-
 namespace F2F.Testing.Xunit.EF
 #endif
 
 #if MSTEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace F2F.Testing.MSTest.EF
 #endif
 
@@ -25,7 +24,7 @@ namespace F2F.Testing.MSTest.EF
 	/// </summary>
 	public class LocalDbContextFeature : LocalDbFeature, IDisposable
 	{
-		private IList<DbContext> _contexts = new List<DbContext>();
+		private readonly IList<DbContext> _contexts = new List<DbContext>();
 
 		private class DatabaseInitializer<TContext> : DropCreateDatabaseAlways<TContext>
 			where TContext : DbContext
@@ -36,6 +35,28 @@ namespace F2F.Testing.MSTest.EF
 			}
 		}
 
+#if NUNIT
+
+		/// <summary>Tear down the database.</summary>
+		[TearDown]
+		public void NUnit_TearDownLocalDb()
+		{
+			Dispose();
+		}
+
+#endif
+
+#if MSTEST
+
+		/// <summary>Tear down the database.</summary>
+		[TestCleanup]
+		public void MSTest_TearDownLocalDb()
+		{
+			Dispose();
+		}
+
+#endif
+
 		/// <summary>
 		/// Create an entity context on temporary file.
 		/// </summary>
@@ -45,6 +66,9 @@ namespace F2F.Testing.MSTest.EF
 			where TContext : DbContext
 		{
 			var context = (TContext)Activator.CreateInstance(typeof(TContext), ConnectionString);
+
+			if (context == null)
+				throw new ArgumentException(String.Format("could not create context for type {0}", typeof(TContext).Name));
 
 			var initializer = new DatabaseInitializer<TContext>();
 			Database.SetInitializer(initializer);
@@ -68,8 +92,10 @@ namespace F2F.Testing.MSTest.EF
 					ctx.Dispose();
 				}
 
-				_contexts = null;
+				_contexts.Clear();
 			}
+
+			base.Dispose();
 		}
 	}
 }

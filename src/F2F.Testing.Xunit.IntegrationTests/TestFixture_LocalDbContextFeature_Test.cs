@@ -5,13 +5,33 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
-using F2F.Testing.Xunit.EF;
-using F2F.Testing.Xunit.Sandbox;
 using FluentAssertions;
-using Xunit;
 
+#if NUNIT
+using NUnit.Framework;
+using F2F.Testing.NUnit.EF;
+namespace F2F.Testing.NUnit.IntegrationTests
+#endif
+
+#if XUNIT
+using Xunit;
+using F2F.Testing.Xunit.EF;
 namespace F2F.Testing.Xunit.IntegrationTests
+#endif
+
+#if MSTEST
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using F2F.Testing.MSTest.EF;
+namespace F2F.Testing.MSTest.IntegrationTests
+#endif
+
 {
+#if NUNIT
+	[TestFixture]
+#endif
+#if MSTEST
+	[TestClass]
+#endif
 	public class TestFixture_LocalDbContextFeature_Test : TestFixture
 	{
 		public class CustomerContext : DbContext
@@ -32,11 +52,18 @@ namespace F2F.Testing.Xunit.IntegrationTests
 
 		public TestFixture_LocalDbContextFeature_Test()
 		{
-			Register(new FileSandboxFeature());
-			Register(new LocalDbContextFeature(Use<FileSandboxFeature>().Sandbox));
+			Register(new LocalDbContextFeature());
 		}
 
+#if NUNIT
+		[Test]
+#endif
+#if XUNIT
 		[Fact]
+#endif
+#if MSTEST
+		[TestMethod]
+#endif
 		public void When_Creating_Context__Should_Not_Be_Null()
 		{
 			// Arrange
@@ -49,19 +76,26 @@ namespace F2F.Testing.Xunit.IntegrationTests
 			ctx.Should().NotBeNull();
 		}
 
+#if NUNIT
+		[Test]
+#endif
+#if XUNIT
 		[Fact]
-		public void Dispose_ShouldDeleteDirectory()
+#endif
+#if MSTEST
+		[TestMethod]
+#endif
+		public void Dispose_ShouldDeleteDatabaseFile()
 		{
 			// Arrange
 			var sut = Use<LocalDbContextFeature>();
-			var ctx = sut.CreateContext<CustomerContext>();
+			sut.CreateContext<CustomerContext>();
 
 			// Act
-			ctx.Dispose();
 			sut.Dispose();
 
 			// Assert
-			Directory.Exists(this.Sandbox().Directory).Should().BeFalse();
+			File.Exists(Use<LocalDbContextFeature>().DatabaseFile).Should().BeFalse();
 		}
 	}
 }

@@ -23,8 +23,10 @@ namespace F2F.Testing.MSTest.EF
 	/// <summary>
 	/// A factory for creating a EntityFramework context on a temporary local db.
 	/// </summary>
-	public class LocalDbContextFeature : LocalDbFeature
+	public class LocalDbContextFeature : LocalDbFeature, IDisposable
 	{
+		private IList<DbContext> _contexts = new List<DbContext>();
+
 		private class DatabaseInitializer<TContext> : DropCreateDatabaseAlways<TContext>
 			where TContext : DbContext
 		{
@@ -32,22 +34,6 @@ namespace F2F.Testing.MSTest.EF
 			{
 				context.SaveChanges();
 			}
-		}
-
-		/// <summary>
-		/// Initializes a file sandbox containing a temporary file.
-		/// </summary>
-		public LocalDbContextFeature()
-			: base()
-		{
-		}
-
-		/// <summary>
-		/// Initializes a file sandbox containing a temporary file.
-		/// </summary>
-		public LocalDbContextFeature(IFileSandbox sandbox)
-			: base(sandbox)
-		{
 		}
 
 		/// <summary>
@@ -64,7 +50,26 @@ namespace F2F.Testing.MSTest.EF
 			Database.SetInitializer(initializer);
 			context.Database.Initialize(true);
 
+			_contexts.Add(context);
+
 			return context;
+		}
+
+		/// <summary>
+		/// Dispose all created contexts.
+		/// </summary>
+		public override void Dispose()
+		{
+			if (_contexts != null)
+			{
+				foreach (var ctx in _contexts)
+				{
+					ctx.Database.Delete();
+					ctx.Dispose();
+				}
+
+				_contexts = null;
+			}
 		}
 	}
 }

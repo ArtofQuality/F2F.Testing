@@ -25,7 +25,8 @@ namespace F2F.Testing.MSTest.EF
 	/// </summary>
 	public class LocalDbFeature : IDisposable
 	{
-		private readonly IFileSandbox _sandbox;
+		private IFileSandbox _sandbox;
+
 		private readonly string _databaseFile;
 		private readonly string _connectionString;
 
@@ -33,18 +34,18 @@ namespace F2F.Testing.MSTest.EF
 		/// Initializes a file sandbox containing a temporary file.
 		/// </summary>
 		public LocalDbFeature()
-			: this(new FileSandbox(new EmptyFileLocator()))
 		{
+			_sandbox = new FileSandbox(new EmptyFileLocator());
+			_databaseFile = _sandbox.GetTempFile("mdf");
+			_connectionString = String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", _databaseFile);
 		}
 
 		/// <summary>
-		/// Initializes a file sandbox containing a temporary file.
+		/// The path to local db file.
 		/// </summary>
-		public LocalDbFeature(IFileSandbox sandbox)
+		public string DatabaseFile
 		{
-			_sandbox = sandbox;
-			_databaseFile = _sandbox.GetTempFile("mdf");
-			_connectionString = String.Format(@"Data Source=(localdb)\v11.0;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", _databaseFile);
+			get { return _databaseFile; }
 		}
 
 		/// <summary>
@@ -61,6 +62,9 @@ namespace F2F.Testing.MSTest.EF
 		/// <param name="sqlDumpFile">The SQL dump file.</param>
 		public void Import(string sqlDumpFile)
 		{
+			if (string.IsNullOrEmpty(sqlDumpFile))
+				throw new ArgumentException("sqlDumpFile is null or empty.", "sqlDumpFile");
+
 			using (var con = new SqlConnection(ConnectionString))
 			using (var file = new StreamReader(sqlDumpFile))
 			{
@@ -88,13 +92,15 @@ namespace F2F.Testing.MSTest.EF
 		}
 
 		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
-		/// resources.
+		/// Dispose file sandbox.
 		/// </summary>
-		/// <seealso cref="M:System.IDisposable.Dispose()"/>
-		public void Dispose()
+		public virtual void Dispose()
 		{
-			_sandbox.Dispose();
+			if (_sandbox != null)
+			{
+				_sandbox.Dispose();
+				_sandbox = null;
+			}
 		}
 	}
 }

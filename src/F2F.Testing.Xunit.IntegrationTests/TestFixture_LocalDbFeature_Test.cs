@@ -10,7 +10,7 @@ using F2F.Testing.NUnit.EF;
 namespace F2F.Testing.NUnit.IntegrationTests
 #endif
 
-#if XUNIT
+#if XUNIT || XUNIT2
 using Xunit;
 using F2F.Testing.Xunit.EF;
 namespace F2F.Testing.Xunit.IntegrationTests
@@ -39,7 +39,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #if NUNIT
 		[Test]
 #endif
-#if XUNIT
+#if XUNIT || XUNIT2
 		[Fact]
 #endif
 #if MSTEST
@@ -57,7 +57,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #if NUNIT
 		[Test]
 #endif
-#if XUNIT
+#if XUNIT || XUNIT2
 		[Fact]
 #endif
 #if MSTEST

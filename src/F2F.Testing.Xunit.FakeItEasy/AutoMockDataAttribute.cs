@@ -4,7 +4,12 @@ using System.Linq;
 using System.Text;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoFakeItEasy;
+#if XUNIT
 using Ploeh.AutoFixture.Xunit;
+#endif
+#if XUNIT2
+using Ploeh.AutoFixture.Xunit2;
+#endif
 
 namespace F2F.Testing.Xunit.FakeItEasy
 {

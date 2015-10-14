@@ -11,7 +11,7 @@ using NUnit.Framework;
 namespace F2F.Testing.NUnit.EF
 #endif
 
-#if XUNIT
+#if XUNIT || XUNIT2
 namespace F2F.Testing.Xunit.EF
 #endif
 
@@ -35,7 +35,7 @@ namespace F2F.Testing.MSTest.EF
 		/// </summary>
 		public LocalDbFeature()
 		{
-#if XUNIT
+#if XUNIT || XUNIT2
 			SetUpLocalDb();
 #endif
 		}

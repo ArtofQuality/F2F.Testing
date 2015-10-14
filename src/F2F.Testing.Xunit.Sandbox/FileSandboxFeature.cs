@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace F2F.Testing.NUnit.Sandbox
 #endif
 
-#if XUNIT
+#if XUNIT || XUNIT2
 namespace F2F.Testing.Xunit.Sandbox
 #endif
 

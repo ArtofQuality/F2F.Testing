@@ -8,7 +8,7 @@ using System.Reflection;
 namespace F2F.Testing.NUnit
 #endif
 
-#if XUNIT
+#if XUNIT || XUNIT2
 namespace F2F.Testing.Xunit
 #endif
 
@@ -135,7 +135,7 @@ namespace F2F.Testing.MSTest
 
 #endif
 		
-#if !XUNIT
+#if !XUNIT && !XUNIT2
 
 		/// <summary>Invoke all methods with support given attribute.</summary>
 		private static void InvokeMethodWithAttribute<TAttribute>(IEnumerable<object> features)

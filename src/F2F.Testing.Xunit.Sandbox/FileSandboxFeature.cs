@@ -16,7 +16,6 @@ namespace F2F.Testing.Xunit.Sandbox
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace F2F.Testing.MSTest.Sandbox
 #endif
-
 {
 	/// <summary>
 	/// Provides a temporary file system (sandbox) for a test fixture.
@@ -45,7 +44,7 @@ namespace F2F.Testing.MSTest.Sandbox
 		{
 			_fileLocator = fileLocator;
 
-#if XUNIT
+#if XUNIT || XUNIT2
 			SetUpSandbox();
 #endif
 		}

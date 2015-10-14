@@ -23,7 +23,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using F2F.Testing.MSTest.Sandbox;
 namespace F2F.Testing.MSTest.IntegrationTests
 #endif
-
 {
 #if NUNIT
 	[TestFixture]
@@ -42,7 +41,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #if NUNIT
 		[Test]
 #endif
-#if XUNIT
+#if XUNIT || XUNIT2
 		[Fact]
 #endif
 #if MSTEST

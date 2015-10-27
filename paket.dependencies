@@ -1,0 +1,31 @@
+source https://www.nuget.org/api/v2/
+
+nuget AutoFixture.AutoFakeItEasy 3.36.9 framework: >= net40
+nuget AutoFixture.AutoMoq 3.36.9 framework: >= net40
+nuget EntityFramework 6.0.0 framework: >= net40
+nuget F2F.Sandbox 1.1.0.0
+nuget FluentAssertions 3.3.0 framework: >= net40
+nuget Npgsql 2.2.5
+nuget NUnit 2.6.4
+
+nuget FSharp.Formatting
+nuget NUnit 
+nuget NUnit.Runners
+nuget FAKE
+nuget SourceLink.Fake
+
+github fsharp/FAKE modules/Octokit/Octokit.fsx
+
+nuget Nuget.CommandLine
+nuget xunit.runner.console
+
+group xUnit
+	source https://www.nuget.org/api/v2/
+	nuget AutoFixture.Xunit 3.36.9 framework: >= net40
+
+group xUnit2
+	source https://www.nuget.org/api/v2/
+	nuget AutoFixture.Xunit2 3.36.9 framework: >= net45
+	nuget AutoFixture.AutoFakeItEasy 3.36.9 framework: >= net45
+	nuget AutoFixture.AutoMoq 3.36.9 framework: >= net45
+	nuget xunit 2.1.0 framework: >= net45

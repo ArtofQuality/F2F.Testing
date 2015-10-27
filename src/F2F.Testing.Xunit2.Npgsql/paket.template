@@ -1,0 +1,9 @@
+﻿type project
+description
+ Test feature for temporary database in PostgreSQL server
+
+authors Art of Quality GmbH
+owners aoq
+projectUrl https://github.com/ArtofQuality/F2F.Testing
+licenseUrl https://github.com/ArtofQuality/F2F.Testing/blob/master/LICENSE.txt
+tags aoq f2f testing xunit2 npgsql postgresql

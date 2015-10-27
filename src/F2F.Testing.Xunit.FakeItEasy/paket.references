@@ -1,0 +1,8 @@
+AutoFixture
+AutoFixture.AutoFakeItEasy
+FakeItEasy
+
+group xUnit
+	AutoFixture.Xunit
+	xunit
+	xunit.extensions

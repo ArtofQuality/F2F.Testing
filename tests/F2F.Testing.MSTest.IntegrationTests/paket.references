@@ -1,0 +1,6 @@
+AutoFixture
+AutoFixture.AutoMoq
+EntityFramework
+F2F.Sandbox
+FluentAssertions
+Moq

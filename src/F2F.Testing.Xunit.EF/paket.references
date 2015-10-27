@@ -1,0 +1,6 @@
+EntityFramework
+F2F.Sandbox
+
+group xUnit
+	xunit
+	xunit.extensions

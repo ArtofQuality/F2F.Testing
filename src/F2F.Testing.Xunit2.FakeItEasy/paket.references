@@ -1,0 +1,7 @@
+FakeItEasy
+
+group xUnit2
+	AutoFixture
+	AutoFixture.AutoFakeItEasy
+	AutoFixture.Xunit2
+	xUnit

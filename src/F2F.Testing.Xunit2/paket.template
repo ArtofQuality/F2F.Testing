@@ -1,0 +1,9 @@
+﻿type project
+description
+  The base class TestFixture provides a registry for test features which are automatically disposed after each test case.
+
+authors Art of Quality GmbH
+owners aoq
+projectUrl https://github.com/ArtofQuality/F2F.Testing
+licenseUrl https://github.com/ArtofQuality/F2F.Testing/blob/master/LICENSE.txt
+tags aoq f2f testing xunit2

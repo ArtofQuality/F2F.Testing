@@ -1,0 +1,10 @@
+EntityFramework
+F2F.Sandbox
+FakeItEasy
+FluentAssertions
+
+group xUnit2
+	AutoFixture
+	AutoFixture.AutoFakeItEasy
+	AutoFixture.Xunit2
+	xunit

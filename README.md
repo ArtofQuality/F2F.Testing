@@ -9,6 +9,7 @@ A TestFixture is a base class for registering several test features. All SetUp a
 TestFixture provides only two public methods: `Register` for registering new features by type (where a feature can be of any type) and `Use` for requesting a registered object by it's type.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2
 * F2F.Testing.Xunit
 * F2F.Testing.NUnit
 * F2F.Testing.MSTest
@@ -28,6 +29,7 @@ With TestFixture it is possible to extend a class with unlimited re-usable featu
 Provide a [FileSandbox](https://github.com/ArtofQuality/F2F.Sandbox) for your test.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2.Sandbox
 * F2F.Testing.Xunit.Sandbox
 * F2F.Testing.NUnit.Sandbox
 * F2F.Testing.MSTest.Sandbox
@@ -57,6 +59,7 @@ public class FileSandboxFeature_Test : TestFixture
 Provide [AutoFixture](https://github.com/AutoFixture/AutoFixture) initialized with a mocking framework as [FakeItEasy](https://github.com/FakeItEasy/FakeItEasy) or [Moq](https://github.com/Moq/moq4).
 
 *NuGet packages*:
+* F2F.Testing.Xunit2.FakeItEasy
 * F2F.Testing.Xunit.FakeItEasy
 * F2F.Testing.NUnit.FakeItEasy
 * F2F.Testing.MSTest.Moq
@@ -86,6 +89,7 @@ public class AutoMockFeature_Test : TestFixture
 The `LocalDbFeature` provides a connection string to a localdb data source pointing to a temporary file (using `FileSandbox`). The `LocalDbContextFeature` initializes the [EntityFramework](https://entityframework.codeplex.com/) using this connection string. Now you can execute tests in parallel with any given DbContext.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2.EF
 * F2F.Testing.Xunit.EF
 * F2F.Testing.NUnit.EF
 * F2F.Testing.MSTest.EF
@@ -115,6 +119,7 @@ public class LocalDbContextFeature_Test : TestFixture
 This feature targets integration tests against an existing PostgreSQL server. Instead of using an existing database this feature creates a temporary database on the server, provides the connection string and drops the database after test execution. Now you are able to execute tests in parallel without side effects. Furthermore you get a method to import test data by using a SQL dump file. A SQL dump file can easily be provided by using `FileSandboxFeature`.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2.Npgsql
 * F2F.Testing.Xunit.Npgsql
 * F2F.Testing.NUnit.Npgsql
 * F2F.Testing.MSTest.Npgsql
@@ -146,6 +151,7 @@ public class PostgreSQLFeature_Test : TestFixture
 As `PostgreSQLFeature` the `SqlServerFeature` provides a temporary database on an existing MS SQL Server.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2
 * F2F.Testing.Xunit
 * F2F.Testing.NUnit
 * F2F.Testing.MSTest
@@ -155,6 +161,7 @@ As `PostgreSQLFeature` the `SqlServerFeature` provides a temporary database on a
 With `AppConfigFeature` you are able to test different `app.config` files for your test assembly. The feature replaces the `app.config` during test execution. Different `app.config` files can easily be provided by using `FileSandboxFeature`.
 
 *NuGet packages*:
+* F2F.Testing.Xunit2
 * F2F.Testing.Xunit
 * F2F.Testing.NUnit
 * F2F.Testing.MSTest

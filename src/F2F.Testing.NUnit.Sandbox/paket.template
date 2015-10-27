@@ -1,0 +1,9 @@
+﻿type project
+description
+ Add FileSandboxFeature to your TestFixture (F2F.Testing.NUnit)
+
+authors Art of Quality GmbH
+owners aoq
+projectUrl https://github.com/ArtofQuality/F2F.Testing
+licenseUrl https://github.com/ArtofQuality/F2F.Testing/blob/master/LICENSE.txt
+tags aoq f2f testing nunit file sandbox

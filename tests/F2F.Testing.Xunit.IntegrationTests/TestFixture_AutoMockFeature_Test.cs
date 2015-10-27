@@ -49,7 +49,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		[Fact]
 #endif
 #if MSTEST
-		[TestMethod]
+		[TestMethod, Ignore]
 #endif
 		public void When_Create_Interface_With_Fixture__Should_Not_Be_Null()
 		{

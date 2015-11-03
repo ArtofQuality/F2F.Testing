@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
+using System.Linq;
+using System.Reflection;
 
 #if NUNIT
 using NUnit.Framework;
@@ -17,16 +20,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
 namespace F2F.Testing.MSTest
 #endif
-
 {
 	/// <summary>
 	/// A generic base class for a test fixture.
 	/// </summary>
 	public abstract class TestFixture : IDisposable
 	{
-		private readonly IList<object> _features = new List<object>();
+		private class NamedFeature
+		{
+			public string Name { get; set; }
+			public object Feature { get; set; }
+		}
 
-		private readonly IDictionary<string, object> _namedFeatures = new Dictionary<string, object>();
+		private LinkedList<object> _features = new LinkedList<object>();
+		private LinkedList<NamedFeature> _namedFeatures = new LinkedList<NamedFeature>();
 
 		private bool _disposed = false;
 
@@ -38,7 +45,9 @@ namespace F2F.Testing.MSTest
 		public void Register<TFeature>(TFeature feature)
 			where TFeature : class
 		{
-			_features.Add(feature);
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
+			_features.AddLast(feature);
 		}
 
 		/// <summary>
@@ -50,7 +59,13 @@ namespace F2F.Testing.MSTest
 		public void Register<TFeature>(TFeature feature, string name)
 			where TFeature : class
 		{
-			_namedFeatures.Add(name, feature);
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
+			_namedFeatures.AddLast(new NamedFeature
+			{
+				Name = name,
+				Feature = feature
+			});
 		}
 
 		/// <summary>
@@ -61,6 +76,8 @@ namespace F2F.Testing.MSTest
 		public TFeature Use<TFeature>()
 			where TFeature : class
 		{
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
 			foreach (object f in _features)
 			{
 				if (f is TFeature)
@@ -81,9 +98,18 @@ namespace F2F.Testing.MSTest
 		public TFeature Use<TFeature>(string name)
 			where TFeature : class
 		{
-			return _namedFeatures.ContainsKey(name)
-				? (TFeature)_namedFeatures[name]
-				: default(TFeature);
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
+			// TODO: Probably inefficient, but not critical, since it should be only a few named features registered
+			foreach (var feature in _namedFeatures)
+			{
+				if (String.CompareOrdinal(feature.Name, name) == 0 && feature.Feature is TFeature)
+				{
+					return feature as TFeature;
+				}
+			}
+
+			return default(TFeature);
 		}
 
 #if NUNIT
@@ -93,7 +119,7 @@ namespace F2F.Testing.MSTest
 		public void SetUpFeatures()
 		{
 			InvokeMethodWithAttribute<SetUpAttribute>(_features);
-			InvokeMethodWithAttribute<SetUpAttribute>(_namedFeatures.Values);
+			InvokeMethodWithAttribute<SetUpAttribute>(_namedFeatures.Select(x => x.Feature));
 		}
 
 		/// <summary>Tear down all known features.</summary>
@@ -101,7 +127,7 @@ namespace F2F.Testing.MSTest
 		public void TearDownFeatures()
 		{
 			InvokeMethodWithAttribute<TearDownAttribute>(_features);
-			InvokeMethodWithAttribute<TearDownAttribute>(_namedFeatures.Values);
+			InvokeMethodWithAttribute<TearDownAttribute>(_namedFeatures.Select(x => x.Feature));
 		}
 
 		/// <summary>Dispose all known features.</summary>
@@ -120,7 +146,7 @@ namespace F2F.Testing.MSTest
 		public void SetUpFeatures()
 		{
 			InvokeMethodWithAttribute<TestInitializeAttribute>(_features);
-			InvokeMethodWithAttribute<TestInitializeAttribute>(_namedFeatures.Values);
+			InvokeMethodWithAttribute<TestInitializeAttribute>(_namedFeatures.Select(x => x.Feature));
 		}
 
 		/// <summary>Tear down all known features.</summary>
@@ -128,13 +154,13 @@ namespace F2F.Testing.MSTest
 		public void TearDownFeatures()
 		{
 			InvokeMethodWithAttribute<TestCleanupAttribute>(_features);
-			InvokeMethodWithAttribute<TestCleanupAttribute>(_namedFeatures.Values);
+			InvokeMethodWithAttribute<TestCleanupAttribute>(_namedFeatures.Select(x => x.Feature));
 
 			Dispose();
 		}
 
 #endif
-		
+
 #if !XUNIT && !XUNIT2
 
 		/// <summary>Invoke all methods with support given attribute.</summary>
@@ -157,6 +183,11 @@ namespace F2F.Testing.MSTest
 
 #endif
 
+		~TestFixture()
+		{
+			Dispose(false);
+		}
+
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
 		/// resources.
@@ -164,19 +195,33 @@ namespace F2F.Testing.MSTest
 		/// <seealso cref="M:System.IDisposable.Dispose()"/>
 		public void Dispose()
 		{
-			if (!_disposed)
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing && !_disposed)
 			{
-				Dispose(_features);
-				Dispose(_namedFeatures.Values);
+				if (_features != null)
+				{
+					DisposeInReverseOrder(_features);
+					_features = null;
+				}
+				if (_namedFeatures != null)
+				{
+					DisposeInReverseOrder(_namedFeatures.Select(x => x.Feature));
+					_namedFeatures = null;
+				}
 
 				_disposed = true;
 			}
 		}
 
-		/// <summary>Dispose all features which are IDisposable.</summary>
-		private static void Dispose(IEnumerable<object> features)
+		/// <summary>Dispose all features which are IDisposable in reverse order.</summary>
+		private static void DisposeInReverseOrder(IEnumerable<object> features)
 		{
-			foreach (object f in features)
+			foreach (object f in features.Reverse())
 			{
 				if (f is IDisposable)
 				{

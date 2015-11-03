@@ -24,9 +24,9 @@ namespace F2F.Testing.MSTest
 	/// </summary>
 	public abstract class TestFixture : IDisposable
 	{
-		private readonly IList<object> _features = new List<object>();
+		private IList<object> _features = new List<object>();
 
-		private readonly IDictionary<string, object> _namedFeatures = new Dictionary<string, object>();
+		private IDictionary<string, object> _namedFeatures = new Dictionary<string, object>();
 
 		private bool _disposed = false;
 
@@ -38,6 +38,8 @@ namespace F2F.Testing.MSTest
 		public void Register<TFeature>(TFeature feature)
 			where TFeature : class
 		{
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
 			_features.Add(feature);
 		}
 
@@ -50,6 +52,8 @@ namespace F2F.Testing.MSTest
 		public void Register<TFeature>(TFeature feature, string name)
 			where TFeature : class
 		{
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
 			_namedFeatures.Add(name, feature);
 		}
 
@@ -61,6 +65,8 @@ namespace F2F.Testing.MSTest
 		public TFeature Use<TFeature>()
 			where TFeature : class
 		{
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
 			foreach (object f in _features)
 			{
 				if (f is TFeature)
@@ -81,6 +87,8 @@ namespace F2F.Testing.MSTest
 		public TFeature Use<TFeature>(string name)
 			where TFeature : class
 		{
+			if (_disposed) throw new ObjectDisposedException("TestFixture");
+
 			return _namedFeatures.ContainsKey(name)
 				? (TFeature)_namedFeatures[name]
 				: default(TFeature);
@@ -157,6 +165,11 @@ namespace F2F.Testing.MSTest
 
 #endif
 
+		~TestFixture()
+		{
+			Dispose(false);
+		}
+
 		/// <summary>
 		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
 		/// resources.
@@ -164,10 +177,24 @@ namespace F2F.Testing.MSTest
 		/// <seealso cref="M:System.IDisposable.Dispose()"/>
 		public void Dispose()
 		{
-			if (!_disposed)
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (disposing && !_disposed)
 			{
-				Dispose(_features);
-				Dispose(_namedFeatures.Values);
+				if (_features != null)
+				{
+					Dispose(_features);
+					_features = null;
+				}
+				if (_namedFeatures != null)
+				{
+					Dispose(_namedFeatures.Values);
+					_namedFeatures = null;
+				}
 
 				_disposed = true;
 			}

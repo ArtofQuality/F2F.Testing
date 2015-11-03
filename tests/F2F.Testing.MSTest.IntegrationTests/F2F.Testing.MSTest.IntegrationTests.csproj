@@ -60,6 +60,9 @@
     <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_LocalDbFeature_Test.cs">
       <Link>TestFixture_LocalDbFeature_Test.cs</Link>
     </Compile>
+    <Compile Include="..\F2F.Testing.Xunit.IntegrationTests\TestFixture_Test.cs">
+      <Link>TestFixture_Test.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

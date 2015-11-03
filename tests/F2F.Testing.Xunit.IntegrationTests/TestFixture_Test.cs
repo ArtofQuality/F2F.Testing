@@ -49,6 +49,64 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		{
 			// only exists to have a test case that is executed from this class, so its Dispose will get called
 		}
+		
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+
+			if (!disposing)
+			{
+				true.Should().BeFalse(because: "Dispose(true) wasn't called.");
+			}
+		}
+	}
+
+#if NUNIT
+	[TestFixture]
+#endif
+#if MSTEST
+	[TestClass]
+#endif
+	public class TestFixture_FeatureDisposal_Test : TestFixture
+	{
+		private class Disposable : IDisposable
+		{
+			private readonly Action _onDispose;
+
+			public Disposable(Action onDispose)
+			{
+				_onDispose = onDispose;
+			}
+
+			public void Dispose()
+			{
+				_onDispose();
+			}
+		}
+
+		public TestFixture_FeatureDisposal_Test()
+		{
+		}
+
+#if NUNIT
+		[Test]
+#endif
+#if XUNIT || XUNIT2
+		[Fact]
+#endif
+#if MSTEST
+		[TestMethod, Ignore]
+#endif
+		public void When_Fixture_Is_Disposed__Should_Dispose_Features_In_Reverse_Order_Of_Registration()
+		{
+			var feature1 = new Disposable(() => feature1DisposedTicks = DateTimeOffset.Now.Ticks);
+			var feature2 = new Disposable(() => feature2DisposedTicks = DateTimeOffset.Now.Ticks);
+
+			this.Register(feature1);
+			this.Register(feature2);
+		}
+
+        long feature1DisposedTicks = 0, feature2DisposedTicks = 0;
 
 		protected override void Dispose(bool disposing)
 		{
@@ -57,6 +115,11 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			if (!disposing)
 			{
 				true.Should().BeFalse(because: "Dispose(true) wasn't called.");
+			}
+			else
+			{
+				// feature2 should be disposed before feature1
+				feature2DisposedTicks.Should().BeLessThan(feature1DisposedTicks);
 			}
 		}
 	}

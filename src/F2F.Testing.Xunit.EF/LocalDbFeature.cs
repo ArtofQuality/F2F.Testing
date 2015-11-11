@@ -97,6 +97,7 @@ namespace F2F.Testing.MSTest.EF
 		public string ConnectionString
 		{
 			get { return _connectionString; }
+			set { _connectionString = value; }
 		}
 
 		/// <summary>

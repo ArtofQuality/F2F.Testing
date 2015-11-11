@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FluentAssertions;
 using Ploeh.AutoFixture;
+using System.Threading;
 
 #if NUNIT
 using NUnit.Framework;
@@ -99,8 +100,15 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 		public void When_Fixture_Is_Disposed__Should_Dispose_Features_In_Reverse_Order_Of_Registration()
 		{
-			var feature1 = new Disposable(() => feature1DisposedTicks = DateTimeOffset.Now.Ticks);
-			var feature2 = new Disposable(() => feature2DisposedTicks = DateTimeOffset.Now.Ticks);
+			var feature1 = new Disposable(() =>
+			{
+				Thread.Sleep(1);    // force thread to sleep, so code doesn't execute on the same tick
+				feature1DisposedTicks = DateTimeOffset.Now.Ticks;
+            });
+			var feature2 = new Disposable(() =>
+			{
+				feature2DisposedTicks = DateTimeOffset.Now.Ticks;
+			});
 
 			this.Register(feature1);
 			this.Register(feature2);

@@ -52,7 +52,18 @@ namespace F2F.Testing.MSTest.IntegrationTests
 
 		public TestFixture_LocalDbContextFeature_Test()
 		{
-			Register(new LocalDbContextFeature());
+			var feature = new LocalDbContextFeature();
+			
+
+			Register(feature);
+		}
+
+		private LocalDbContextFeature CreateSut()
+		{
+			var sut = Use<LocalDbContextFeature>();
+			sut.ConnectionString = String.Format(@"Data Source=(localdb)\ProjectsV12;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", sut.DatabaseFile);
+
+			return sut;
 		}
 
 #if NUNIT
@@ -67,7 +78,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		public void When_Creating_Context__Should_Not_Be_Null()
 		{
 			// Arrange
-			var sut = Use<LocalDbContextFeature>();
+			var sut = CreateSut();
 
 			// Act
 			var ctx = sut.CreateContext<CustomerContext>();
@@ -88,7 +99,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		public void Dispose_ShouldDeleteDatabaseFile()
 		{
 			// Arrange
-			var sut = Use<LocalDbContextFeature>();
+			var sut = CreateSut();
 			sut.CreateContext<CustomerContext>();
 
 			// Act

@@ -1,3 +1,7 @@
+## 1.4.1.0 - Unreleased
+* LocalDBFeature uses constant localdb data source #39
+* Reverse Dispose tests fail on very fast machines #40
+
 ### 1.4.0.0 - November 03 2015
 * Virtual implementation of IDisposable in TestFixture #28
 * TestFixture: Dispose features in reverse order of registration #29

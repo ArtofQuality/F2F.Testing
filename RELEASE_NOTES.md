@@ -1,4 +1,7 @@
-## 1.4.1.0 - Unreleased
+## 1.4.2.0 - November 12 2015
+* Provide possibility to customize database initializer #44
+
+### 1.4.1.0 - November 11 2015
 * LocalDBFeature uses constant localdb data source #39
 * Reverse Dispose tests fail on very fast machines #40
 

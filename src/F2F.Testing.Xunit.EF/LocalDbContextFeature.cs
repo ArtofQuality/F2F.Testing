@@ -25,16 +25,7 @@ namespace F2F.Testing.MSTest.EF
 	public class LocalDbContextFeature : LocalDbFeature, IDisposable
 	{
 		private readonly IList<DbContext> _contexts = new List<DbContext>();
-
-		private class DatabaseInitializer<TContext> : DropCreateDatabaseAlways<TContext>
-			where TContext : DbContext
-		{
-			protected override void Seed(TContext context)
-			{
-				context.SaveChanges();
-			}
-		}
-
+		
 #if NUNIT
 
 		/// <summary>Tear down the database.</summary>
@@ -70,7 +61,7 @@ namespace F2F.Testing.MSTest.EF
 			if (context == null)
 				throw new ArgumentException(String.Format("could not create context for type {0}", typeof(TContext).Name));
 
-			var initializer = new DatabaseInitializer<TContext>();
+			var initializer = CreateInitializer<TContext>();
 			Database.SetInitializer(initializer);
 			context.Database.Initialize(true);
 
@@ -78,6 +69,17 @@ namespace F2F.Testing.MSTest.EF
 
 			return context;
 		}
+
+		/// <summary>
+		/// Create the initializer used to initialize the temporary localdb database
+		/// </summary>
+		/// <typeparam name="TContext"></typeparam>
+		/// <returns></returns>
+		protected virtual IDatabaseInitializer<TContext> CreateInitializer<TContext>()
+			where TContext : DbContext
+		{
+			return new DropCreateDatabaseAlways<TContext>();
+        }
 
 		/// <summary>
 		/// Dispose all created contexts.

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>TestFixtureExtensions - F2F.Testing</title>
+    <title>IFeature - F2F.Testing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Art of Quality GmbH"/>
@@ -35,33 +35,37 @@
 
 
 
-<h1>TestFixtureExtensions</h1>
+<h1>IFeature</h1>
 <p>
-  <span>Namespace: F2F.Testing.Xunit.Sandbox</span><br />
+  <span>Namespace: F2F.Testing.MSTest</span><br />
 </p>
 <div class="xmldoc">
-<p>Extension methods for TestFixture.</p>
+<p>Represents a feature that can be registered and used from a</p>
 
 
 </div>
-  <h3>Static members</h3>
+  <h3>Instance members</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
+      <tr><td>Instance member</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
-            Sandbox(fixture)
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+            OnUse()
           </code>
-          <div class="tip" id="180">
-            <strong>Signature:</strong> fixture:TestFixture -&gt; IFileSandbox<br />
+          <div class="tip" id="11">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+              <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Wrapper for Use<FileSandboxFeature>().Fixture.</p>
+          <p>Everytime a feature is getting used by a call to<br />
+or , this method will be called on 
+the feature.
+This can for example be used for lazy initialization of a feature.</p>
 
 
 

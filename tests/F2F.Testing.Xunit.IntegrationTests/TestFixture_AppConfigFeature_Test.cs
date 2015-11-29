@@ -27,6 +27,10 @@ using F2F.Testing.MSTest.Sandbox;
 namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 {
+
+	/// <summary>
+	/// 
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -35,12 +39,18 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_AppConfigFeature_Test : TestFixture
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public TestFixture_AppConfigFeature_Test()
 		{
 			Register(new FileSandboxFeature(new ResourceFileLocator(GetType())));
 			Register(new AppConfigFeature());
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif

@@ -25,6 +25,9 @@ using F2F.Testing.MSTest.Moq;
 namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 {
+	/// <summary>
+	/// Tests for the TestFixture
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -33,10 +36,16 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_Test : TestFixture
 	{
+		/// <summary>
+		/// Default constructor
+		/// </summary>
 		public TestFixture_Test()
 		{
 		}
 
+		/// <summary>
+		/// Tests whether the Fixture calls to the Dispose method when is Disposed
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -50,7 +59,12 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		{
 			// only exists to have a test case that is executed from this class, so its Dispose will get called
 		}
-		
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+		/// resources.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);
@@ -62,6 +76,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		}
 	}
 
+	/// <summary>
+	/// Tests that the TestFixture disposes all the registered features properly
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -85,10 +102,16 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			}
 		}
 
+		/// <summary>
+		/// Default constructor
+		/// </summary>
 		public TestFixture_FeatureDisposal_Test()
 		{
 		}
 
+		/// <summary>
+		/// Tests that the features are disposed in reverse order of registration when the Fixture is diposed
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -104,7 +127,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			{
 				Thread.Sleep(1);    // force thread to sleep, so code doesn't execute on the same tick
 				feature1DisposedTicks = DateTimeOffset.Now.Ticks;
-            });
+			});
 			var feature2 = new Disposable(() =>
 			{
 				feature2DisposedTicks = DateTimeOffset.Now.Ticks;
@@ -114,8 +137,13 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			this.Register(feature2);
 		}
 
-        long feature1DisposedTicks = 0, feature2DisposedTicks = 0;
+		long feature1DisposedTicks = 0, feature2DisposedTicks = 0;
 
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+		/// resources.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			base.Dispose(disposing);

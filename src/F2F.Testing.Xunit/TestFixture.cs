@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
-using System.Reflection;
 
 #if NUNIT
 using NUnit.Framework;
@@ -182,7 +181,9 @@ namespace F2F.Testing.MSTest
 		}
 
 #endif
-
+		/// <summary>
+		/// Class destructor. Calls Dispose, no managed resources should be disposed
+		/// </summary>
 		~TestFixture()
 		{
 			Dispose(false);
@@ -199,6 +200,11 @@ namespace F2F.Testing.MSTest
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+		/// resources.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing && !_disposed)

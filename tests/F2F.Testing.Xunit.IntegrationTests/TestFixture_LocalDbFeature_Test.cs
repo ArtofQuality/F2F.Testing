@@ -21,8 +21,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using F2F.Testing.MSTest.EF;
 namespace F2F.Testing.MSTest.IntegrationTests
 #endif
-
 {
+	/// <summary>
+	/// The class tests the integration between TestFixture and LocalDbFeature
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -31,11 +33,17 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_LocalDbFeature_Test : TestFixture
 	{
+		/// <summary>
+		/// Constructor, registers LocalDbFeature
+		/// </summary>
 		public TestFixture_LocalDbFeature_Test()
 		{
 			Register(new LocalDbFeature());
 		}
 
+		/// <summary>
+		/// Tests whether the database file exists once the LocalDbFeature is provided
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -54,6 +62,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			sut.DatabaseFile.Should().NotBeNull();
 		}
 
+		/// <summary>
+		/// Tests that the connectionString is not null when the LocalDbFeature is provided
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif

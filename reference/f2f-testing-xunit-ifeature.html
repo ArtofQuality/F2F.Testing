@@ -40,8 +40,7 @@
   <span>Namespace: F2F.Testing.Xunit</span><br />
 </p>
 <div class="xmldoc">
-<p>Represents a feature that can be registered and used from a</p>
-
+<p>Represents a test feature that can be registered within a</p>
 
 </div>
   <h3>Instance members</h3>
@@ -53,20 +52,18 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '108', 108)" onmouseover="showTip(event, '108', 108)">
+          <code onmouseout="hideTip(event, '110', 110)" onmouseover="showTip(event, '110', 110)">
             OnUse()
           </code>
-          <div class="tip" id="108">
+          <div class="tip" id="110">
             <strong>Signature:</strong> unit -&gt; unit<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Everytime a feature is getting used by a call to<br />
-or , this method will be called on 
-the feature.
-This can for example be used for lazy initialization of a feature.</p>
-
+          <p>Called, when this feature is actually used, as soon as a call to  or
+is performed. A feature implementation can use this to
+perform some initialization.</p>
 
 
         </td>

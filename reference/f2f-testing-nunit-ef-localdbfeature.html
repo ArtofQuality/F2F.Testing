@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>Provides a temporary file for local db SQL connection.</p>
 
-
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -53,16 +52,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '80', 80)" onmouseover="showTip(event, '80', 80)">
+          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
             new()
           </code>
-          <div class="tip" id="80">
+          <div class="tip" id="82">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Initializes a file sandbox containing a temporary file.</p>
-
 
 
         </td>
@@ -78,10 +76,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '81', 81)" onmouseover="showTip(event, '81', 81)">
+          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
             ConnectionString()
           </code>
-          <div class="tip" id="81">
+          <div class="tip" id="83">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
@@ -89,54 +87,20 @@
           <p>The connection string to local db.</p>
 
 
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '82', 82)" onmouseover="showTip(event, '82', 82)">
-            DatabaseFile
-          </code>
-          <div class="tip" id="82">
-            <strong>Signature:</strong> string<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          <p>The path to local db file.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '83', 83)" onmouseover="showTip(event, '83', 83)">
-            Dispose()
-          </code>
-          <div class="tip" id="83">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '84', 84)" onmouseover="showTip(event, '84', 84)">
-            Import(sqlDumpFile)
+            DatabaseFile
           </code>
           <div class="tip" id="84">
-            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
+            <strong>Signature:</strong> string<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Import a SQL dump file into database.</p>
-
+          <p>The path to local db file.</p>
 
 
         </td>
@@ -145,15 +109,15 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '85', 85)" onmouseover="showTip(event, '85', 85)">
-            NUnit_SetUpLocalDb()
+            Dispose()
           </code>
           <div class="tip" id="85">
             <strong>Signature:</strong> unit -&gt; unit<br />
+              <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Set up the database.</p>
-
+          <p>Dispose file sandbox.</p>
 
 
         </td>
@@ -162,15 +126,46 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '86', 86)" onmouseover="showTip(event, '86', 86)">
-            NUnit_TearDownLocalDb()
+            Import(sqlDumpFile)
           </code>
           <div class="tip" id="86">
+            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Import a SQL dump file into database.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '87', 87)" onmouseover="showTip(event, '87', 87)">
+            NUnit_SetUpLocalDb()
+          </code>
+          <div class="tip" id="87">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Set up the database.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '88', 88)" onmouseover="showTip(event, '88', 88)">
+            NUnit_TearDownLocalDb()
+          </code>
+          <div class="tip" id="88">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Tear down the database.</p>
-
 
 
         </td>

@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>Provides a temporary file system (sandbox) for a test fixture.</p>
 
-
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -53,10 +52,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
             new()
           </code>
-          <div class="tip" id="47">
+          <div class="tip" id="48">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
@@ -64,22 +63,20 @@
           <p>Initializes the test fixture without a file locator.</p>
 
 
-
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
             new(fileLocator)
           </code>
-          <div class="tip" id="48">
+          <div class="tip" id="49">
             <strong>Signature:</strong> fileLocator:IFileLocator -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Initializes the test fixture with the given file locator.</p>
-
 
 
         </td>
@@ -95,31 +92,16 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
             Dispose()
           </code>
-          <div class="tip" id="49">
+          <div class="tip" id="50">
             <strong>Signature:</strong> unit -&gt; unit<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
-            MSTest_SetUpSandbox()
-          </code>
-          <div class="tip" id="50">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          <p>Set up the sandbox.</p>
-
+          <p>Dispose the file sandbox.</p>
 
 
         </td>
@@ -128,15 +110,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
-            MSTest_TearDownSandbox()
+            MSTest_SetUpSandbox()
           </code>
           <div class="tip" id="51">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Tear down the sandbox.</p>
-
+          <p>Set up the sandbox.</p>
 
 
         </td>
@@ -145,15 +126,30 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
-            Sandbox
+            MSTest_TearDownSandbox()
           </code>
           <div class="tip" id="52">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Tear down the sandbox.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
+            Sandbox
+          </code>
+          <div class="tip" id="53">
             <strong>Signature:</strong> IFileSandbox<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Gets the sandbox.</p>
-
 
 
         </td>

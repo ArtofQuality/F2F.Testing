@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>Provides a temporary database in PostgreSQL server for a test fixture.</p>
 
-
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -53,10 +52,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '89', 89)" onmouseover="showTip(event, '89', 89)">
+          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
             new(connectionString)
           </code>
-          <div class="tip" id="89">
+          <div class="tip" id="91">
             <strong>Signature:</strong> connectionString:string -&gt; unit<br />
                       </div>
         </td>
@@ -64,22 +63,20 @@
           <p>Initializes the test fixture with the given PostgreSQL connection string.</p>
 
 
-
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '90', 90)" onmouseover="showTip(event, '90', 90)">
+          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
             new(connectionString, databaseName)
           </code>
-          <div class="tip" id="90">
+          <div class="tip" id="92">
             <strong>Signature:</strong> (connectionString:string * databaseName:string) -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Initializes the test fixture with the given PostgreSQL connection string and database name.</p>
-
 
 
         </td>
@@ -95,10 +92,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
+          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
             ConnectionString
           </code>
-          <div class="tip" id="91">
+          <div class="tip" id="93">
             <strong>Signature:</strong> string<br />
                       </div>
         </td>
@@ -106,54 +103,20 @@
           <p>Gets the connection string to temporary database.</p>
 
 
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
-            Database
-          </code>
-          <div class="tip" id="92">
-            <strong>Signature:</strong> string<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          <p>Gets the database name.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
-            Dispose()
-          </code>
-          <div class="tip" id="93">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-              <strong>Modifiers:</strong> abstract<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '94', 94)" onmouseover="showTip(event, '94', 94)">
-            Import(sqlDumpFile)
+            Database
           </code>
           <div class="tip" id="94">
-            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
+            <strong>Signature:</strong> string<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Import a SQL dump file into database.</p>
-
+          <p>Gets the database name.</p>
 
 
         </td>
@@ -162,15 +125,16 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
-            NUnit_SetUpDatabase()
+            Dispose()
           </code>
           <div class="tip" id="95">
             <strong>Signature:</strong> unit -&gt; unit<br />
+              <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Set up the database.</p>
-
+          <p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+resources.</p>
 
 
         </td>
@@ -179,15 +143,46 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
-            NUnit_TearDownDatabase()
+            Import(sqlDumpFile)
           </code>
           <div class="tip" id="96">
+            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Import a SQL dump file into database.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
+            NUnit_SetUpDatabase()
+          </code>
+          <div class="tip" id="97">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Set up the database.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
+            NUnit_TearDownDatabase()
+          </code>
+          <div class="tip" id="98">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Tear down the database.</p>
-
 
 
         </td>

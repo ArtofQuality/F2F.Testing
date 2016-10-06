@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>A generic base class for a test fixture.</p>
 
-
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -53,10 +52,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
             new()
           </code>
-          <div class="tip" id="68">
+          <div class="tip" id="69">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
@@ -75,10 +74,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
             Dispose()
           </code>
-          <div class="tip" id="69">
+          <div class="tip" id="70">
             <strong>Signature:</strong> unit -&gt; unit<br />
               <strong>Modifiers:</strong> abstract<br />
                       </div>
@@ -88,39 +87,20 @@
 resources.</p>
 
 
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
-            DisposeFeatures()
-          </code>
-          <div class="tip" id="70">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          <p>Dispose all known features.</p>
-
-
-
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
-            Register(feature)
+            DisposeFeatures()
           </code>
           <div class="tip" id="71">
-            <strong>Signature:</strong> feature:IFeature -&gt; unit<br />
+            <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Register the given feature.</p>
-
+          <p>Dispose all known features.</p>
 
 
         </td>
@@ -129,15 +109,14 @@ resources.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
-            Register(feature, name)
+            Register(feature)
           </code>
           <div class="tip" id="72">
-            <strong>Signature:</strong> (feature:IFeature * name:string) -&gt; unit<br />
-                      </div>
+            <strong>Signature:</strong> feature:&#39;TFeature -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'TFeature          </div>
         </td>
         <td class="xmldoc">
-          <p>Register the given feature by name.</p>
-
+          <p>Register the given feature.</p>
 
 
         </td>
@@ -146,15 +125,14 @@ resources.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
-            SetUpFeatures()
+            Register(feature, name)
           </code>
           <div class="tip" id="73">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-                      </div>
+            <strong>Signature:</strong> (feature:&#39;TFeature * name:string) -&gt; unit<br />
+                          <strong>Type parameters:</strong> 'TFeature          </div>
         </td>
         <td class="xmldoc">
-          <p>Set up all known features.</p>
-
+          <p>Register the given feature by name.</p>
 
 
         </td>
@@ -163,15 +141,14 @@ resources.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
-            TearDownFeatures()
+            SetUpFeatures()
           </code>
           <div class="tip" id="74">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Tear down all known features.</p>
-
+          <p>Set up all known features.</p>
 
 
         </td>
@@ -180,15 +157,14 @@ resources.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '75', 75)" onmouseover="showTip(event, '75', 75)">
-            Use()
+            TearDownFeatures()
           </code>
           <div class="tip" id="75">
-            <strong>Signature:</strong> unit -&gt; &#39;TFeature<br />
-                          <strong>Type parameters:</strong> 'TFeature          </div>
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
         </td>
         <td class="xmldoc">
-          <p>Return a known feature.</p>
-
+          <p>Tear down all known features.</p>
 
 
         </td>
@@ -197,15 +173,30 @@ resources.</p>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '76', 76)" onmouseover="showTip(event, '76', 76)">
-            Use(name)
+            Use()
           </code>
           <div class="tip" id="76">
-            <strong>Signature:</strong> name:string -&gt; &#39;TFeature<br />
+            <strong>Signature:</strong> unit -&gt; &#39;TFeature<br />
                           <strong>Type parameters:</strong> 'TFeature          </div>
         </td>
         <td class="xmldoc">
           <p>Return a known feature.</p>
 
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '77', 77)" onmouseover="showTip(event, '77', 77)">
+            Use(name)
+          </code>
+          <div class="tip" id="77">
+            <strong>Signature:</strong> name:string -&gt; &#39;TFeature<br />
+                          <strong>Type parameters:</strong> 'TFeature          </div>
+        </td>
+        <td class="xmldoc">
+          <p>Return a known feature.</p>
 
 
         </td>

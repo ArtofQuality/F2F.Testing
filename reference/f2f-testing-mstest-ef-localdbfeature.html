@@ -42,7 +42,6 @@
 <div class="xmldoc">
 <p>Provides a temporary file for local db SQL connection.</p>
 
-
 </div>
   <h3>Constructors</h3>
   <table class="table table-bordered member-list">
@@ -53,16 +52,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
             new()
           </code>
-          <div class="tip" id="30">
+          <div class="tip" id="31">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>Initializes a file sandbox containing a temporary file.</p>
-
 
 
         </td>
@@ -78,33 +76,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
             ConnectionString()
           </code>
-          <div class="tip" id="31">
+          <div class="tip" id="32">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
           <p>The connection string to local db.</p>
-
-
-
-        </td>
-      </tr>
-      <tr>
-        <td class="member-name">
-
-          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
-            DatabaseFile
-          </code>
-          <div class="tip" id="32">
-            <strong>Signature:</strong> string<br />
-                      </div>
-        </td>
-        <td class="xmldoc">
-          <p>The path to local db file.</p>
-
 
 
         </td>
@@ -113,30 +93,31 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
-            Dispose()
+            DatabaseFile
           </code>
           <div class="tip" id="33">
-            <strong>Signature:</strong> unit -&gt; unit<br />
-              <strong>Modifiers:</strong> abstract<br />
+            <strong>Signature:</strong> string<br />
                       </div>
         </td>
         <td class="xmldoc">
-          
+          <p>The path to local db file.</p>
+
+
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
-            Import(sqlDumpFile)
+            Dispose()
           </code>
           <div class="tip" id="34">
-            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
+            <strong>Signature:</strong> unit -&gt; unit<br />
+              <strong>Modifiers:</strong> abstract<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Import a SQL dump file into database.</p>
-
+          <p>Dispose file sandbox.</p>
 
 
         </td>
@@ -145,15 +126,14 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
-            MSTest_SetUpLocalDb()
+            Import(sqlDumpFile)
           </code>
           <div class="tip" id="35">
-            <strong>Signature:</strong> unit -&gt; unit<br />
+            <strong>Signature:</strong> sqlDumpFile:string -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Set up the database.</p>
-
+          <p>Import a SQL dump file into database.</p>
 
 
         </td>
@@ -162,15 +142,30 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
-            MSTest_TearDownLocalDb()
+            MSTest_SetUpLocalDb()
           </code>
           <div class="tip" id="36">
             <strong>Signature:</strong> unit -&gt; unit<br />
                       </div>
         </td>
         <td class="xmldoc">
-          <p>Tear down the database.</p>
+          <p>Set up the database.</p>
 
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
+            MSTest_TearDownLocalDb()
+          </code>
+          <div class="tip" id="37">
+            <strong>Signature:</strong> unit -&gt; unit<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+          <p>Tear down the database.</p>
 
 
         </td>

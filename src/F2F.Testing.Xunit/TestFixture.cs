@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using System.Linq;
-using System.Reflection;
 
 #if NUNIT
 using NUnit.Framework;
@@ -29,10 +28,10 @@ namespace F2F.Testing.MSTest
 		private class NamedFeature
 		{
 			public string Name { get; set; }
-			public object Feature { get; set; }
+			public IFeature Feature { get; set; }
 		}
 
-		private LinkedList<object> _features = new LinkedList<object>();
+		private LinkedList<IFeature> _features = new LinkedList<IFeature>();
 		private LinkedList<NamedFeature> _namedFeatures = new LinkedList<NamedFeature>();
 
 		private bool _disposed = false;
@@ -43,8 +42,8 @@ namespace F2F.Testing.MSTest
 		/// <typeparam name="TFeature">The feature's type.</typeparam>
 		/// <param name="feature">The feature.</param>
 		public void Register<TFeature>(TFeature feature)
-			where TFeature : class
-		{
+			where TFeature : class, IFeature
+        {
 			if (_disposed) throw new ObjectDisposedException("TestFixture");
 
 			_features.AddLast(feature);
@@ -57,8 +56,8 @@ namespace F2F.Testing.MSTest
 		/// <param name="feature">The feature.</param>
 		/// <param name="name">The feature's name.</param>
 		public void Register<TFeature>(TFeature feature, string name)
-			where TFeature : class
-		{
+			where TFeature : class, IFeature
+        {
 			if (_disposed) throw new ObjectDisposedException("TestFixture");
 
 			_namedFeatures.AddLast(new NamedFeature
@@ -74,14 +73,15 @@ namespace F2F.Testing.MSTest
 		/// <typeparam name="TFeature">The feature's type.</typeparam>
 		/// <returns>The feature</returns>
 		public TFeature Use<TFeature>()
-			where TFeature : class
-		{
+			where TFeature : class, IFeature
+        {
 			if (_disposed) throw new ObjectDisposedException("TestFixture");
 
-			foreach (object f in _features)
+			foreach (var f in _features)
 			{
 				if (f is TFeature)
 				{
+                    f.OnUse();
 					return f as TFeature;
 				}
 			}
@@ -96,8 +96,8 @@ namespace F2F.Testing.MSTest
 		/// <param name="name">The feature's name.</param>
 		/// <returns>The feature</returns>
 		public TFeature Use<TFeature>(string name)
-			where TFeature : class
-		{
+			where TFeature : class, IFeature
+        {
 			if (_disposed) throw new ObjectDisposedException("TestFixture");
 
 			// TODO: Probably inefficient, but not critical, since it should be only a few named features registered
@@ -105,7 +105,8 @@ namespace F2F.Testing.MSTest
 			{
 				if (String.CompareOrdinal(feature.Name, name) == 0 && feature.Feature is TFeature)
 				{
-					return feature as TFeature;
+                    feature.Feature.OnUse();
+                    return feature as TFeature;
 				}
 			}
 
@@ -164,13 +165,13 @@ namespace F2F.Testing.MSTest
 #if !XUNIT && !XUNIT2
 
 		/// <summary>Invoke all methods with support given attribute.</summary>
-		private static void InvokeMethodWithAttribute<TAttribute>(IEnumerable<object> features)
+		private static void InvokeMethodWithAttribute<TAttribute>(IEnumerable<IFeature> features)
 		{
-			foreach (object f in features)
+			foreach (var f in features)
 			{
 				foreach (MethodInfo m in f.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public))
 				{
-					foreach (object a in m.GetCustomAttributes(true))
+					foreach (var a in m.GetCustomAttributes(true))
 					{
 						if (a is TAttribute)
 						{
@@ -182,7 +183,9 @@ namespace F2F.Testing.MSTest
 		}
 
 #endif
-
+		/// <summary>
+		/// Class destructor. Calls Dispose, no managed resources should be disposed
+		/// </summary>
 		~TestFixture()
 		{
 			Dispose(false);
@@ -199,6 +202,11 @@ namespace F2F.Testing.MSTest
 			GC.SuppressFinalize(this);
 		}
 
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged
+		/// resources.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing && !_disposed)
@@ -219,7 +227,7 @@ namespace F2F.Testing.MSTest
 		}
 
 		/// <summary>Dispose all features which are IDisposable in reverse order.</summary>
-		private static void DisposeInReverseOrder(IEnumerable<object> features)
+		private static void DisposeInReverseOrder(IEnumerable<IFeature> features)
 		{
 			foreach (object f in features.Reverse())
 			{

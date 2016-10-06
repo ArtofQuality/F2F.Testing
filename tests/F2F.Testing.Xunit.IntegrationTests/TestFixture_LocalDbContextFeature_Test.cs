@@ -26,6 +26,10 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 
 {
+
+	/// <summary>
+	/// The class tests the integration between TestFixture and LocalDbContextFeature
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -34,22 +38,43 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_LocalDbContextFeature_Test : TestFixture
 	{
+
+		/// <summary>
+		/// DbContext sample. Customer DbContext
+		/// </summary>
 		public class CustomerContext : DbContext
 		{
+
+			/// <summary>
+			/// Constructor. Calls the base class constructor
+			/// </summary>
+			/// <param name="nameOrConnectionString">Name or ConnectionString</param>
 			public CustomerContext(string nameOrConnectionString)
 				: base(nameOrConnectionString)
 			{
 			}
 
+			/// <summary>
+			/// Sample DbSet. Customers
+			/// </summary>
 			public DbSet<Customer> Customers { get; set; }
 		}
 
+		/// <summary>
+		/// Sample Entity Customer
+		/// </summary>
 		public class Customer
 		{
+			/// <summary>
+			/// Sample property. Name
+			/// </summary>
 			[Key]
 			public string Name { get; set; }
 		}
 
+		/// <summary>
+		/// Constructor. Registers the LocalDbContextFeature
+		/// </summary>
 		public TestFixture_LocalDbContextFeature_Test()
 		{
 			var feature = new LocalDbContextFeature();
@@ -61,11 +86,14 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		private LocalDbContextFeature CreateSut()
 		{
 			var sut = Use<LocalDbContextFeature>();
-			sut.ConnectionString = String.Format(@"Data Source=(localdb)\ProjectsV12;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", sut.DatabaseFile);
+			sut.ConnectionString = String.Format(@"Data Source=(localdb)\MSSQLLocalDB;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", sut.DatabaseFile);
 
 			return sut;
 		}
 
+		/// <summary>
+		/// Tests that the Context it is set to an instance once it's created
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -87,6 +115,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			ctx.Should().NotBeNull();
 		}
 
+		/// <summary>
+		/// Tests that the Database file has been deleted once the FileSandboxFeature has been disposed
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif

@@ -6,16 +6,19 @@ using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.AutoFakeItEasy;
 
 #if NUNIT
+using F2F.Testing.NUnit;
 namespace F2F.Testing.NUnit.FakeItEasy
-#else
+#endif
 
+#if XUNIT || XUNIT2
+using F2F.Testing.Xunit;
 namespace F2F.Testing.Xunit.FakeItEasy
 #endif
 {
 	/// <summary>
 	/// Provides AutoFixture initialized with FakeItEasy.
 	/// </summary>
-	public class AutoMockFeature
+	public class AutoMockFeature : Feature
 	{
 		private IFixture _fixture;
 

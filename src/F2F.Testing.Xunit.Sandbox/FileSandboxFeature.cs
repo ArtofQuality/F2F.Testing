@@ -5,22 +5,25 @@ using F2F.Sandbox;
 
 #if NUNIT
 using NUnit.Framework;
+using F2F.Testing.NUnit;
 namespace F2F.Testing.NUnit.Sandbox
 #endif
 
 #if XUNIT || XUNIT2
+using F2F.Testing.Xunit;
 namespace F2F.Testing.Xunit.Sandbox
 #endif
 
 #if MSTEST
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using F2F.Testing.MSTest;
 namespace F2F.Testing.MSTest.Sandbox
 #endif
 {
-	/// <summary>
-	/// Provides a temporary file system (sandbox) for a test fixture.
-	/// </summary>
-	public class FileSandboxFeature : IDisposable
+    /// <summary>
+    /// Provides a temporary file system (sandbox) for a test fixture.
+    /// </summary>
+    public class FileSandboxFeature : Feature, IDisposable
 	{
 		/// <summary>The file locator.</summary>
 		private readonly IFileLocator _fileLocator;

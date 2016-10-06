@@ -8,23 +8,26 @@ using F2F.Sandbox;
 
 #if NUNIT
 using NUnit.Framework;
+using F2F.Testing.NUnit;
 namespace F2F.Testing.NUnit.EF
 #endif
 
 #if XUNIT || XUNIT2
+using F2F.Testing.Xunit;
 namespace F2F.Testing.Xunit.EF
 #endif
 
 #if MSTEST
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using F2F.Testing.MSTest;
 namespace F2F.Testing.MSTest.EF
 #endif
 
 {
-	/// <summary>
-	/// Provides a temporary file for local db SQL connection.
-	/// </summary>
-	public class LocalDbFeature : IDisposable
+    /// <summary>
+    /// Provides a temporary file for local db SQL connection.
+    /// </summary>
+    public class LocalDbFeature : Feature, IDisposable
 	{
 		private IFileSandbox _sandbox;
 		private string _databaseFile;

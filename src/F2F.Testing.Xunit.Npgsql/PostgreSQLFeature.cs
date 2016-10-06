@@ -22,7 +22,7 @@ namespace F2F.Testing.MSTest.Npgsql
 	/// <summary>
 	/// Provides a temporary database in PostgreSQL server for a test fixture.
 	/// </summary>
-	public class PostgreSQLFeature : IDisposable
+	public class PostgreSQLFeature : Feature, IDisposable
 	{
 		private readonly string _databaseName;
 

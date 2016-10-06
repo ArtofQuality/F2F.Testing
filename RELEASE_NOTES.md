@@ -1,4 +1,9 @@
-## 1.4.2.0 - November 12 2015
+## 2.0.0.0 - October 6 2016
+* Fix project references and upgrade all projects to .NET4.5 #48
+* Introduce IFeature interface #47
+* Review paket.dependencies file #37
+
+### 1.4.2.0 - November 12 2015
 * Provide possibility to customize database initializer #44
 
 ### 1.4.1.0 - November 11 2015

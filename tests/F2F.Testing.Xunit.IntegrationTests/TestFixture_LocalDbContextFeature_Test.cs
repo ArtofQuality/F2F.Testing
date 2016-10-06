@@ -86,7 +86,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 		private LocalDbContextFeature CreateSut()
 		{
 			var sut = Use<LocalDbContextFeature>();
-			sut.ConnectionString = String.Format(@"Data Source=(localdb)\ProjectsV12;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", sut.DatabaseFile);
+			sut.ConnectionString = String.Format(@"Data Source=(localdb)\MSSQLLocalDB;AttachDbFileName={0};Integrated Security=True;Connect Timeout=5", sut.DatabaseFile);
 
 			return sut;
 		}

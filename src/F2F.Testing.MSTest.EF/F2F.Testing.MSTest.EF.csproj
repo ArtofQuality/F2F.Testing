@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>F2F.Testing.MSTest.EF</RootNamespace>
     <AssemblyName>F2F.Testing.MSTest.EF</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
@@ -56,6 +56,12 @@
     <None Include="App.config" />
     <None Include="paket.references" />
     <None Include="paket.template" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\F2F.Testing.MSTest\F2F.Testing.MSTest.csproj">
+      <Project>{0e23a599-d46a-4f8c-aac9-8e7a897dbb60}</Project>
+      <Name>F2F.Testing.MSTest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,7 +23,7 @@ namespace F2F.Testing.MSTest
 	/// <summary>
 	/// Provides a temporary database in SQL Server for a test fixture.
 	/// </summary>
-	public class SqlServerFeature : IDisposable
+	public class SqlServerFeature : Feature, IDisposable
 	{
 		private readonly string _connectionString;
 

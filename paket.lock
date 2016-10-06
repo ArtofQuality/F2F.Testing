@@ -1,34 +1,48 @@
 NUGET
   remote: https://www.nuget.org/api/v2
-    AutoFixture (3.36.9) - framework: >= net40
-    AutoFixture.AutoFakeItEasy (3.36.9) - framework: >= net40
-      AutoFixture (>= 3.36.9)
+    AutoFixture (3.50.2) - framework: >= net40
+    AutoFixture.AutoFakeItEasy (3.50.2) - framework: >= net40
+      AutoFixture (>= 3.50.2)
       FakeItEasy (>= 1.7)
-    AutoFixture.AutoMoq (3.36.9) - framework: >= net40
-      AutoFixture (>= 3.36.9)
+    AutoFixture.AutoMoq (3.50.2) - framework: >= net40
+      AutoFixture (>= 3.50.2)
       Moq (>= 4.1.1308.2120)
-    EntityFramework (6.0) - framework: >= net40
-    F2F.Sandbox (1.1)
-    FAKE (4.7.2)
-    FakeItEasy (1.25.3) - framework: >= net40
+    Castle.Core (3.3.3) - framework: >= net45
+    EntityFramework (6.1.3) - framework: >= net40
+    F2F.Sandbox (1.1.1)
+    FAKE (4.40.2)
+    FakeItEasy (2.3.1) - framework: >= net40
     FluentAssertions (4.14) - framework: >= net40
-    FSharp.Compiler.Service (1.4.0.6)
-    FSharp.Formatting (2.12)
-      FSharp.Compiler.Service (1.4.0.6)
-      FSharpVSPowerTools.Core (2.1)
-    FSharpVSPowerTools.Core (2.1)
-      FSharp.Compiler.Service (>= 1.4.0.6)
+    FSharp.Compiler.Service (2.0.0.6)
+    FSharp.Formatting (2.14.4)
+      FSharp.Compiler.Service (2.0.0.6)
+      FSharpVSPowerTools.Core (>= 2.3 < 2.4)
+    FSharpVSPowerTools.Core (2.3)
+      FSharp.Compiler.Service (>= 2.0.0.3)
     Microsoft.Bcl (1.1.10) - framework: net10, net11, net20, net30, net35, net40, net40-full
       Microsoft.Bcl.Build (>= 1.0.14)
     Microsoft.Bcl.Build (1.0.21) - import_targets: false, framework: net10, net11, net20, net30, net35, net40, net40-full
     Microsoft.Net.Http (2.2.29) - framework: net10, net11, net20, net30, net35, net40, net40-full
       Microsoft.Bcl (>= 1.1.10)
       Microsoft.Bcl.Build (>= 1.0.14)
-    Moq (4.2.1510.2205) - framework: >= net40
+    Moq (4.5.22) - framework: >= net40
+      Castle.Core (>= 3.3.3) - framework: >= net45
     Npgsql (2.2.7) - framework: >= net40
-    NuGet.CommandLine (2.8.6)
+    NuGet.CommandLine (3.4.3)
     NUnit (2.6.4)
-    NUnit.Runners (2.6.4)
+    NUnit.ConsoleRunner (3.4.1)
+    NUnit.Extension.NUnitProjectLoader (3.5)
+    NUnit.Extension.NUnitV2Driver (3.5)
+    NUnit.Extension.NUnitV2ResultWriter (3.4.1)
+    NUnit.Extension.TeamCityEventListener (1.0.2)
+    NUnit.Extension.VSProjectLoader (3.5)
+    NUnit.Runners (3.4.1)
+      NUnit.ConsoleRunner (>= 3.4.1)
+      NUnit.Extension.NUnitProjectLoader (>= 3.4.1)
+      NUnit.Extension.NUnitV2Driver (>= 3.4.1)
+      NUnit.Extension.NUnitV2ResultWriter (>= 3.4.1)
+      NUnit.Extension.TeamCityEventListener (>= 1.0.1)
+      NUnit.Extension.VSProjectLoader (>= 3.4.1)
     Octokit (0.22)
       Microsoft.Net.Http  - framework: net10, net11, net20, net30, net35, net40, net40-full
     SourceLink.Fake (1.1)
@@ -40,9 +54,9 @@ GITHUB
 GROUP xUnit
 NUGET
   remote: https://www.nuget.org/api/v2
-    AutoFixture (3.36.9) - framework: >= net40
-    AutoFixture.Xunit (3.36.9) - framework: >= net40
-      AutoFixture (>= 3.36.9)
+    AutoFixture (3.50.2) - framework: >= net40
+    AutoFixture.Xunit (3.50.2) - framework: >= net40
+      AutoFixture (>= 3.50.2)
       xunit.extensions (>= 1.8.0.1549 < 2.0)
     xunit (1.9.2) - framework: >= net40
     xunit.extensions (1.9.2) - framework: >= net40
@@ -51,27 +65,29 @@ NUGET
 GROUP xUnit2
 NUGET
   remote: https://www.nuget.org/api/v2
-    AutoFixture (3.36.9) - framework: >= net45
-    AutoFixture.AutoFakeItEasy (3.36.9) - framework: >= net45
-      AutoFixture (>= 3.36.9)
+    AutoFixture (3.50.2) - framework: >= net45
+    AutoFixture.AutoFakeItEasy (3.50.2) - framework: >= net45
+      AutoFixture (>= 3.50.2)
       FakeItEasy (>= 1.7)
-    AutoFixture.AutoMoq (3.36.9) - framework: >= net45
-      AutoFixture (>= 3.36.9)
+    AutoFixture.AutoMoq (3.50.2) - framework: >= net45
+      AutoFixture (>= 3.50.2)
       Moq (>= 4.1.1308.2120)
-    AutoFixture.Xunit2 (3.36.9) - framework: >= net45
-      AutoFixture (>= 3.36.9)
+    AutoFixture.Xunit2 (3.50.2) - framework: >= net45
+      AutoFixture (>= 3.50.2)
       xunit.core (>= 2.0 < 3.0)
-    FakeItEasy (1.25.3) - framework: >= net45
-    Moq (4.2.1510.2205) - framework: >= net45
+    Castle.Core (3.3.3) - framework: >= net45
+    FakeItEasy (2.3.1) - framework: >= net45
+    Moq (4.5.22) - framework: >= net45
+      Castle.Core (>= 3.3.3) - framework: >= net45
     xunit (2.1) - framework: >= net45
       xunit.assert (2.1)
       xunit.core (2.1)
     xunit.abstractions (2.0) - framework: >= net45
     xunit.assert (2.1) - framework: >= net45
     xunit.core (2.1) - framework: >= net45
-      xunit.extensibility.core (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0
-      xunit.extensibility.execution (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0
+      xunit.extensibility.core (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0, wpav8.1
+      xunit.extensibility.execution (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, portable-net45+win80+wp80+wpa81, xamarinios, winv4.5, wpv8.0, wpav8.1
     xunit.extensibility.core (2.1) - framework: >= net45
       xunit.abstractions (2.0)
     xunit.extensibility.execution (2.1) - framework: >= net45
-      xunit.extensibility.core (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, xamarinios, winv4.5, wpv8.0
+      xunit.extensibility.core (2.1) - framework: >= net45, dnx451, dnxcore50, monoandroid, monotouch, xamarinios, winv4.5, wpv8.0, wpav8.1

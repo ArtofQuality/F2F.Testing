@@ -22,7 +22,7 @@ namespace F2F.Testing.MSTest
 	/// <summary>
 	/// Replaces the app.config of current test assembly with a new file.
 	/// </summary>
-	public class AppConfigFeature : IDisposable
+	public class AppConfigFeature : Feature, IDisposable
 	{
 		private readonly string _appConfigFile;
 		private readonly string _appConfigBackupFile;

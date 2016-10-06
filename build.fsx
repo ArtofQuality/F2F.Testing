@@ -167,11 +167,9 @@ Target "RunTests_xUnit" (fun _ ->
 
 Target "RunTests_NUnit" (fun _ ->
     !! testAssembliesNUnit
-    |> NUnit (fun p ->
+    |> NUnit3 (fun p ->
         { p with 
-            DisableShadowCopy = true
             TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml"
         })
 )
 

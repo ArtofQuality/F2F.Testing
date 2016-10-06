@@ -10,6 +10,7 @@
           </Filter>
         </Filter>
         <SessionName>Main</SessionName>
+        <GroupCaption>Project</GroupCaption>
       </Item>
     </Sessions>
     <ActiveSessionName>Main</ActiveSessionName>

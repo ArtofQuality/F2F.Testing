@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>F2F.Testing.NUnit</RootNamespace>
     <AssemblyName>F2F.Testing.NUnit</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -42,6 +42,12 @@
   <ItemGroup>
     <Compile Include="..\F2F.Testing.Xunit\AppConfigFeature.cs">
       <Link>AppConfigFeature.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit\Feature.cs">
+      <Link>Feature.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit\IFeature.cs">
+      <Link>IFeature.cs</Link>
     </Compile>
     <Compile Include="..\F2F.Testing.Xunit\SqlServerFeature.cs">
       <Link>SqlServerFeature.cs</Link>

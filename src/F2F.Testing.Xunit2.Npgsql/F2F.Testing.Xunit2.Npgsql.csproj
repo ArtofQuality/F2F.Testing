@@ -51,6 +51,12 @@
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\F2F.Testing.Xunit2\F2F.Testing.Xunit2.csproj">
+      <Project>{93bb1bb1-2ad7-416a-b0bd-8b895846aaaa}</Project>
+      <Name>F2F.Testing.Xunit2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

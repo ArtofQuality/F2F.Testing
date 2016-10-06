@@ -10,7 +10,7 @@ namespace F2F.Testing.MSTest.Moq
 	/// <summary>
 	/// Provides AutoFixture initialized with Moq.
 	/// </summary>
-	public class AutoMockFeature
+	public class AutoMockFeature : Feature
 	{
 		private IFixture _fixture;
 

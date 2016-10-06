@@ -56,6 +56,12 @@
     <Compile Include="..\F2F.Testing.Xunit\AppConfigFeature.cs">
       <Link>AppConfigFeature.cs</Link>
     </Compile>
+    <Compile Include="..\F2F.Testing.Xunit\Feature.cs">
+      <Link>Feature.cs</Link>
+    </Compile>
+    <Compile Include="..\F2F.Testing.Xunit\IFeature.cs">
+      <Link>IFeature.cs</Link>
+    </Compile>
     <Compile Include="..\F2F.Testing.Xunit\SqlServerFeature.cs">
       <Link>SqlServerFeature.cs</Link>
     </Compile>
@@ -65,9 +71,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="paket.references" />
     <None Include="paket.template" />
   </ItemGroup>

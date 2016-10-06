@@ -25,6 +25,10 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 
 {
+
+	/// <summary>
+	/// The class tests the integration between TestFixture and FileSandboxFeature
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -33,11 +37,17 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_FileSandboxFeature_Test : TestFixture
 	{
+		/// <summary>
+		/// Constructor. Registers the File Sandbox Feature
+		/// </summary>
 		public TestFixture_FileSandboxFeature_Test()
 		{
 			Register(new FileSandboxFeature(new ResourceFileLocator(GetType())));
 		}
 
+		/// <summary>
+		/// Tests if the SandboxFeature instance is returned when it's requested
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -47,7 +57,7 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #if MSTEST
 		[TestMethod]
 #endif
-		public void When_Requesting_Sandbox_Fixture__Should_Not_Be_Null()
+		public void When_Requesting_Sandbox_Feature__Should_Not_Be_Null()
 		{
 			// Act
 			var sut = Use<FileSandboxFeature>();
@@ -56,6 +66,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			sut.Sandbox.Should().NotBeNull();
 		}
 
+		/// <summary>
+		/// The test ensures that when a file is provided by the FileSandboxFeature, this file exists 
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -77,6 +90,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			File.Exists(file).Should().BeTrue();
 		}
 
+		/// <summary>
+		/// The test ensures that when a file is provided by the FileSandboxFeature, this file contains the expected content
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -100,6 +116,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			File.ReadAllText(file).Should().Be(expectedContent);
 		}
 
+		/// <summary>
+		/// Tests that the FileSandboxFeature it is set to null once disposed
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif
@@ -121,6 +140,9 @@ namespace F2F.Testing.MSTest.IntegrationTests
 			sut.Sandbox.Should().BeNull();
 		}
 
+		/// <summary>
+		/// Tests that the Database file has been deleted once the FileSandboxFeature has been disposed
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif

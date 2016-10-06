@@ -24,6 +24,10 @@ using F2F.Testing.MSTest.Moq;
 namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 {
+
+	/// <summary>
+	/// Tests Create Fixture method
+	/// </summary>
 #if NUNIT
 	[TestFixture]
 #endif
@@ -32,16 +36,28 @@ namespace F2F.Testing.MSTest.IntegrationTests
 #endif
 	public class TestFixture_AutoMockFeature_Test : TestFixture
 	{
+		/// <summary>
+		/// Sample interface
+		/// </summary>
 		public interface ISample
 		{
+			/// <summary>
+			/// Sample property
+			/// </summary>
 			string Name { get; }
 		}
 
+		/// <summary>
+		/// Contructor, registers automockFeature
+		/// </summary>
 		public TestFixture_AutoMockFeature_Test()
 		{
 			Register(new AutoMockFeature());
 		}
 
+		/// <summary>
+		/// Tests Fixture Create method with a given interface
+		/// </summary>
 #if NUNIT
 		[Test]
 #endif

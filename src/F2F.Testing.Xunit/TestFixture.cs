@@ -105,7 +105,7 @@ namespace F2F.Testing.MSTest
 			{
 				if (String.CompareOrdinal(feature.Name, name) == 0 && feature.Feature is TFeature)
 				{
-                    feature.OnUse();
+                    feature.Feature.OnUse();
                     return feature as TFeature;
 				}
 			}
